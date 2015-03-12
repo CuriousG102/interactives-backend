@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'photoMap',
     'nested_inline',
     'rest_framework',
+    'crimeAPI',
+    'django.contrib.gis',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,7 +63,7 @@ WSGI_APPLICATION = 'interactivesBackend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.postgis', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'django_interactives',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': settings.DB_USER,
