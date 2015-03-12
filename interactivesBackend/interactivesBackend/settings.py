@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g^dv%y%7tdmq4w+=)1%zna=!w2ph2k_)&7e=rh#!oqdluzgb$i'
+SECRET_KEY = secrets.KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -61,8 +61,13 @@ WSGI_APPLICATION = 'interactivesBackend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'django_interactives',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': settings.DB_USER,
+        'PASSWORD': settings.DB_PASS,
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
     }
 }
 
@@ -82,6 +87,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
+
+STATIC_ROOT = '/opt/interactivesBackend/static/'
 
 STATIC_URL = '/static/'
 

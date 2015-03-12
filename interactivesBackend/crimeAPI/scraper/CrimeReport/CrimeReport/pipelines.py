@@ -36,19 +36,5 @@ class CrimeReportPipeline(object):
             i['offense_area_command'] = item['offense_area_command']
             i['offense_investigator_assigned'] = item['offense_investigator_assigned']
             i.save()
-        
+
         return item
-        
-
-
-
-
-
-
-
-
-
-
-
-
-        return i
