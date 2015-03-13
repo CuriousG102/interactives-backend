@@ -11,6 +11,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^photoMap/', include('photoMap.urls',
     						   namespace='photoMap')),
+    url(r'^crimeAPI/', include('crimeAPI.urls',
+    						   namespace='crimeAPI')),
     url(r'^api-auth/', include('rest_framework.urls',
    							   namespace='rest_framework')),
 )
