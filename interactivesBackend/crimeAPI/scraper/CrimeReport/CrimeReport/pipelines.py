@@ -43,5 +43,6 @@ class CrimeReportPipeline(object):
                 i.offenses.add(offenseToAdd)
 
             i.save()
+            print '.', i, i.pk
 
         return item
