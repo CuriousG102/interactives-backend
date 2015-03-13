@@ -15,3 +15,7 @@ NEWSPIDER_MODULE = 'CrimeReport.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Crime Scraper (+http://www.dailytexanonline.com/)'
+
+ITEM_PIPELINES = [
+        'CrimeReport.pipelines.CrimeReportPipeline'
+    ]
