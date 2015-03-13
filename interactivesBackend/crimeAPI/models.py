@@ -16,3 +16,6 @@ class Crime(models.Model):
 
 class Offense(models.Model):
 	name = models.CharField(max_length=80)
+
+	def __unicode__(self):
+		return self.name
