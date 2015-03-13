@@ -18,7 +18,7 @@ class CrimeItem(DjangoItem):
 
 class CrimeReportPipeline(object):
     def process_item(self, item, spider):
-        i, exists = Crime.objects.get_or_create(report_number__exact = item['report_number'])
+        i, exists = Crime.objects.get_or_create(report_number = item['report_number'])
         if not exists:
             i.report_number = item['report_number']
 
@@ -35,8 +35,7 @@ class CrimeReportPipeline(object):
             i.offense_investigator_assigned = item['offense_investigator_assigned']
             i = i.save()
             for offense in item['offenses']:
-                offenseToAdd, created = Offense.objects.get_or_create(name__exact=offense)
+                offenseToAdd, created = Offense.objects.get_or_create(name=offense)
                 i.offenses.add(offenseToAdd)
-            i.save()
 
         return item
