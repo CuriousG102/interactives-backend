@@ -37,10 +37,7 @@ class CrimeReportPipeline(object):
             i['offense_investigator_assigned'] = item['offense_investigator_assigned']
             i = i.save()
             for offense in item['offenses']:
-                try:
-                    offenseToAdd = Offense.objects.filter(name__exact = offense)[0]
-                except IndexError:
-                    offenseToAdd = Offense(name = offense)
+                offenseToAdd, created = Offense.objects.get_or_create(name__exact=offense)
                 i.offenses.add(offenseToAdd)
 
         return item
