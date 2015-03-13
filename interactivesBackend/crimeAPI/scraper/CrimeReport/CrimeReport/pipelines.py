@@ -29,12 +29,19 @@ class CrimeReportPipeline(object):
                                                  time_format)
             i['offense_time'] = datetime.strptime(item['offense_time'],
                                                   time_format)
-            i['offenses'] = item['offenses']
             i['offense_address'] = item['offense_address']
             i['offense_census_tract'] = item['offense_census_tract']
             i['offense_district'] = item['offense_district']
             i['offense_area_command'] = item['offense_area_command']
             i['offense_investigator_assigned'] = item['offense_investigator_assigned']
+            i = i.save(commit=False)
+            for offense in item['offenses']:
+                try:
+                    offenseToAdd = Offense.objects.filter(name__exact = offense)[0]
+                except IndexError:
+                    offenseToAdd = Offense(name = offense)
+                i.offenses.add(offenseToAdd)
+
             i.save()
 
         return item
