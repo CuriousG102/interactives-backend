@@ -18,23 +18,21 @@ class CrimeItem(DjangoItem):
 
 class CrimeReportPipeline(object):
     def process_item(self, item, spider):
-        try:
-            i = Crime.objects.filter(report_number__exact = item['report_number'])[0]
-        except IndexError:
-            i = CrimeItem()
-            i['report_number'] = item['report_number']
+        i, exists = Crime.objects.get_or_create(report_number__exact = item['report_number'])
+        if not exists:
+            i.report_number = item['report_number']
 
             time_format = "%a, %b-%d-%Y %H:%M"
 
-            i['report_time'] = datetime.strptime(item['report_time'],
+            i.report_time = datetime.strptime(item['report_time'],
                                                  time_format)
-            i['offense_time'] = datetime.strptime(item['offense_time'],
+            i.offense_time = datetime.strptime(item['offense_time'],
                                                   time_format)
-            i['offense_address'] = item['offense_address']
-            i['offense_census_tract'] = item['offense_census_tract']
-            i['offense_district'] = item['offense_district']
-            i['offense_area_command'] = item['offense_area_command']
-            i['offense_investigator_assigned'] = item['offense_investigator_assigned']
+            i.offense_address = item['offense_address']
+            i.offense_census_tract = item['offense_census_tract']
+            i.offense_district = item['offense_district']
+            i.offense_area_command = item['offense_area_command']
+            i.offense_investigator_assigned = item['offense_investigator_assigned']
             i = i.save()
             for offense in item['offenses']:
                 offenseToAdd, created = Offense.objects.get_or_create(name__exact=offense)
