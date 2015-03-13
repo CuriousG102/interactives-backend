@@ -12,14 +12,18 @@ from crimeAPI.models import Crime, Offense
 import django
 django.setup()
 
+from scrapy import log
+
 class CrimeItem(DjangoItem):
     django_model = Crime
 
 class CrimeReportPipeline(object):
     def process_item(self, item, spider):
         try:
+            log.msg("in try", levl=log.INFO)
             i = Crime.objects.filter(report_number__exact = item['report_number'])[0]
         except IndexError:
+            log.msg("in except", level=log.INFO)
             i = CrimeItem()
             i['report_number'] = item['report_number']
 
@@ -43,6 +47,6 @@ class CrimeReportPipeline(object):
                 i.offenses.add(offenseToAdd)
 
             i.save()
-            print '.', i, i.pk
+            log.msg(i, level=log.INFO)
 
         return item
