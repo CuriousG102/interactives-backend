@@ -39,5 +39,6 @@ class CrimeReportPipeline(object):
             for offense in item['offenses']:
                 offenseToAdd, created = Offense.objects.get_or_create(name__exact=offense)
                 i.offenses.add(offenseToAdd)
+            i.save()
 
         return item
