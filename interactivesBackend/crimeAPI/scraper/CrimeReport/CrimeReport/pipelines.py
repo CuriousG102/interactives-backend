@@ -19,6 +19,7 @@ class CrimeItem(DjangoItem):
 
 class CrimeReportPipeline(object):
     def process_item(self, item, spider):
+        log.msg("what", levl=log.INFO)
         try:
             log.msg("in try", levl=log.INFO)
             i = Crime.objects.filter(report_number__exact = item['report_number'])[0]
