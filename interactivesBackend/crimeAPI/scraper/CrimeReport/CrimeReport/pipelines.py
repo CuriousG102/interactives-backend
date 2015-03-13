@@ -7,7 +7,7 @@
 from datetime import datetime
 
 from scrapy.contrib.djangoitem import DjangoItem
-from crimeAPI.items import Crime, Offense
+from crimeAPI.models import Crime, Offense
 
 import django
 django.setup()
