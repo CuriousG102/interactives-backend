@@ -19,3 +19,5 @@ USER_AGENT = 'Crime Scraper (+http://www.dailytexanonline.com/)'
 ITEM_PIPELINES = [
         'CrimeReport.pipelines.CrimeReportPipeline'
     ]
+
+LOG_LEVEL = 'INFO'
