@@ -48,7 +48,7 @@ class CrimeList(generics.ListAPIView):
             queryset = queryset.filter(offense_time__lte=timezone.localize(offenseTimeRange[0] + MAX_ALLOWED_DAYS))
 
         if bbTopRightY and bbTopRightX and bbBottomLeftY and bbBottomLeftX:
-            geom = Polygon.frombbox(bbBottomLeftX, bbBottomLeftY, 
+            geom = Polygon.from_bbox(bbBottomLeftX, bbBottomLeftY, 
                                     bbTopRightX, bbTopRightY)
             queryset = queryset.filter(geocode_location__within=geom)
 
@@ -89,7 +89,7 @@ class CrimeCount(APIView):
             queryset = queryset.filter(offense_time__lte=offenseTimeRange[1])
 
         if bbTopRightY and bbTopRightX and bbBottomLeftY and bbBottomLeftX:
-            geom = Polygon.frombbox(bbBottomLeftX, bbBottomLeftY, 
+            geom = Polygon.from_bbox(bbBottomLeftX, bbBottomLeftY, 
                                     bbTopRightX, bbTopRightY)
             queryset = queryset.filter(geocode_location__within=geom)
 
