@@ -9,6 +9,7 @@ from datetime import datetime
 from scrapy.contrib.djangoitem import DjangoItem
 from crimeAPI.models import Crime, Offense
 
+import pytz
 
 class CrimeItem(DjangoItem):
     django_model = Crime
@@ -19,12 +20,17 @@ class CrimeReportPipeline(object):
         if created:
             i.report_number = item['report_number']
 
+            timezone = pytz.timezone('US/Central')
             time_format = "%a, %b-%d-%Y %H:%M"
 
             i.report_time = datetime.strptime(item['report_time'],
                                                  time_format)
+            i.report_time = timezone.localize(i.report_time)
             i.offense_time = datetime.strptime(item['offense_time'],
                                                   time_format)
+            i.offense_time = timezone.localize(i.offense_time)
+
+
             i.offense_address = item['offense_address']
             i.offense_census_tract = item['offense_census_tract']
             i.offense_district = item['offense_district']
