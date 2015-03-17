@@ -13,8 +13,8 @@ class Command(BaseCommand):
         for crime in crimes:
             geocoder = geopy.geocoders.GoogleV3(api_key = secrets.API_KEY)
             if time.clock() - startTime < 0.2: # rate limited to 5 per second
-            sleepTime = .2 - (time.clock() - startTime) # prevent giving time.sleep
-                                                        # a negative number
+                sleepTime = .2 - (time.clock() - startTime) # prevent giving time.sleep
+                                                            # a negative number
             if sleepTime > 0:
                 time.sleep(sleepTime)
 
@@ -34,4 +34,3 @@ class Command(BaseCommand):
                 pass
             #except AttributeError:
             #   pass
-            
