@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from models import Crime
-from serializers import CrimeDetailSerializer, CrimeSerializer
+from serializers import CrimeDetailSerializer, CrimeListSerializer
 
 from django.shortcuts import render
 from rest_framework import generics
@@ -16,7 +16,7 @@ class CrimeDetail(generics.RetrieveAPIView):
 	queryset = Crime.objects.all()
 	serializer_class = CrimeDetailSerializer
 
-class Crime(generics.ListAPIView):
+class CrimeList(generics.ListAPIView):
 	def get_queryset(self):
 		MAX_ALLOWED_DAYS = datetime.timedelta(days=7)
 
@@ -54,6 +54,6 @@ class Crime(generics.ListAPIView):
 
 		return queryset
 
-	serializer_class = CrimeSerializer
+	serializer_class = CrimeListSerializer
 
 

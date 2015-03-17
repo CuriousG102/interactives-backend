@@ -23,7 +23,7 @@ class CrimeDetailSerializer(serializers.ModelSerializer):
 		else:
 			return 0.0
 
-class CrimeSerializer(serializers.ModelSerializer):
+class CrimeListSerializer(serializers.ModelSerializer):
 	longitude = serializers.SerializerMethodField()
 	latitude = serializers.SerializerMethodField()
 

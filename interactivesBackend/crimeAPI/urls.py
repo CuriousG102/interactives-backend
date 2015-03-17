@@ -4,6 +4,6 @@ from crimeAPI import views
 
 urlpatterns = (
 	url(r'^crime/(?P<pk>[0-9]+)/$', views.CrimeDetail.as_view()),
-	url(r'^crime/$', views.Crime.as_view()),
+	url(r'^crime/$', views.CrimeList.as_view()),
 	# url(r'^count/$', view.CrimeCount.as_view()),
 )
