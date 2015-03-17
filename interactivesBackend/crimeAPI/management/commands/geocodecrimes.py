@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.contrib.gis.geos import GEOSGeometry
 
 from crimeAPI.models import Crime
-from interarctivesBackend import secrets
+from interactivesBackend import secrets
 
 class Command(BaseCommand):
     help = 'Geocode as many crimes as possible, starting with the most recent non-geocoded and working backwards'
