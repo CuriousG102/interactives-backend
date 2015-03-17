@@ -10,7 +10,7 @@ from scrapy import log
 
 from bs4 import BeautifulSoup
 
-from CrimeReport.items import CrimeReportItem
+from ..items import CrimeReportItem
 
 class ApdSpider(scrapy.Spider):
     name = "apd"

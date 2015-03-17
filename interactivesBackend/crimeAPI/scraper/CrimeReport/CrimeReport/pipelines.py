@@ -9,9 +9,6 @@ from datetime import datetime
 from scrapy.contrib.djangoitem import DjangoItem
 from crimeAPI.models import Crime, Offense
 
-import django
-django.setup()
-
 
 class CrimeItem(DjangoItem):
     django_model = Crime
