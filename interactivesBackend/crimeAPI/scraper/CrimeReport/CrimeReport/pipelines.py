@@ -15,8 +15,8 @@ class CrimeItem(DjangoItem):
 
 class CrimeReportPipeline(object):
     def process_item(self, item, spider):
-        i, exists = Crime.objects.get_or_create(report_number = item['report_number'])
-        if not exists:
+        i, created = Crime.objects.get_or_create(report_number = item['report_number'])
+        if created:
             i.report_number = item['report_number']
 
             time_format = "%a, %b-%d-%Y %H:%M"
