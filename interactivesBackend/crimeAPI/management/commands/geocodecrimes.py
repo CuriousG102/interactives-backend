@@ -4,6 +4,8 @@ from django.contrib.gis.geos import GEOSGeometry
 from crimeAPI.models import Crime
 from interactivesBackend import secrets
 
+import geopy
+
 class Command(BaseCommand):
     help = 'Geocode as many crimes as possible, starting with the most recent non-geocoded and working backwards'
 
