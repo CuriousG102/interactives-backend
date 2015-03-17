@@ -4,6 +4,7 @@ from models import Crime
 from serializers import CrimeDetailSerializer, CrimeListSerializer
 
 from django.shortcuts import render
+from rest_framework.renderers import JSONRenderer
 from rest_framework import generics
 from rest_framework.views import APIView
 from django.contrib.gis.geos import Polygon
