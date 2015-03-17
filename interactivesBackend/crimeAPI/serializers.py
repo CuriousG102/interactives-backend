@@ -32,7 +32,13 @@ class CrimeListSerializer(serializers.ModelSerializer):
 		fields = ('id', 'report_time', 'offense_time', 'offense_district', 'offense_area_command', 'geocoded', 'longitude', 'latitude')
 
 	def get_longitude(self, obj):
-		return obj.x
+		if obj.geocode_location:
+			return obj.geocode_location.x
+		else:
+			return 0.0
 
 	def get_latitude(self, obj):
-		return obj.y
+		if obj.geocode_location:
+			return obj.geocode_location.y
+		else:
+			return 0.0
