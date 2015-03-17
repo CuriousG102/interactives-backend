@@ -31,6 +31,7 @@ class CrimeList(generics.ListAPIView):
 
 		timezone = pytz.timezone('US/Central')
 		if offenseTimeRange[0]:
+			print offenseTimeRange[0]
 			offenseTimeRange[0] = parse(offenseTimeRange[0])
 			queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
 		else:
