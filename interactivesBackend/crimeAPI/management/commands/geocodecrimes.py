@@ -14,6 +14,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         crimes = Crime.objects.all().filter(geocoded=False).order_by('-offense_time')[:2500]
         
+        startTime = time.clock()
         for crime in crimes:
             geocoder = geopy.geocoders.GoogleV3(api_key = secrets.API_KEY)
             if time.clock() - startTime < 0.2: # rate limited to 5 per second
