@@ -6,6 +6,8 @@ from interactivesBackend import secrets
 
 import geopy
 
+import time
+
 class Command(BaseCommand):
     help = 'Geocode as many crimes as possible, starting with the most recent non-geocoded and working backwards'
 
