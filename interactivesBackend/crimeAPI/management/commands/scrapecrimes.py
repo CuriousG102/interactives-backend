@@ -6,11 +6,11 @@ from scrapy.crawler import Crawler
 from scrapy import log, signals
 from scrapy.utils.project import get_project_settings
 
-def Command(BaseCommand):
+def Command(NoArgsCommand):
     help = 'Update the PostGIS backend with the latest crimes\
             reported in the city of Austin'
 
-    def handle(self):
+    def handle_noargs(self, **options):
         spider = apd.ApdSpider()
         settings = get_project_settings()
         crawler = Crawler(settings)
