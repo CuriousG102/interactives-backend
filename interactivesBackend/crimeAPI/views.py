@@ -4,7 +4,7 @@ from models import Crime
 from serializers import CrimeDetailSerializer, CrimeListSerializer
 
 from django.shortcuts import render
-from rest_framework import generics, APIView
+from rest_framework import generics
 from django.contrib.gis.geos import Polygon
 
 import pytz
@@ -56,7 +56,7 @@ class CrimeList(generics.ListAPIView):
 
     serializer_class = CrimeListSerializer
 
-class CrimeCount(APIView):
+class CrimeCount(generics.APIView):
     """
     A view that returns the count of active users.
     """
