@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
         settings.setdict({ 'BOT_NAME':'CrimeReport',
                               'USER_AGENT':'Crime Scraper (+http://www.dailytexanonline.com/)',
-                              'ITEM_PIPELINES':'crimeAPI.scraper.CrimeReport.CrimeReport.pipelines.CrimeReportPipeline',
+                              'ITEM_PIPELINES':['crimeAPI.scraper.CrimeReport.CrimeReport.pipelines.CrimeReportPipeline'],
             })
         crawler = Crawler(settings)
         crawler.signals.connect(reactor.stop, signal=signals.spider_closed)
