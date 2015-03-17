@@ -13,7 +13,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         spider = apd.ApdSpider()
-        settings = Settings({ 'BOT_NAME':'CrimeReport',
+        settings = Settings().setdict({ 'BOT_NAME':'CrimeReport',
                               'USER_AGENT':'Crime Scraper (+http://www.dailytexanonline.com/)',
                               'ITEM_PIPELINES':'crimeAPI.scraper.CrimeReport.CrimeReport.pipelines.CrimeReportPipeline',
             })
