@@ -34,7 +34,7 @@ class CrimeList(generics.ListAPIView):
 			queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
 		else:
 			timezone = pytz.timezone('US/Central')
-			queryset = queryset.filter(offense_time__gte=timezone.localize(datetime.today() - datetime.timedelta(days=7)))
+			queryset = queryset.filter(offense_time__gte=timezone.localize(datetime.datetime.today() - MAX_ALLOWED_DAYS))
 
 
 		if offenseTimeRange[1]:
@@ -42,7 +42,7 @@ class CrimeList(generics.ListAPIView):
 		if offenseTimeRange[1] and ((offenseTimeRange[1] - offenseTimeRange[0]) <= MAX_ALLOWED_DAYS):
 			queryset = queryset.filter(offense_time__lte=offenseTimeRange[1])
 		else:
-			queryset = queryset.filter(offense_time__lte=timezone.localize(datetime.today()))
+			queryset = queryset.filter(offense_time__lte=timezone.localize(datetime.datetime.today()))
 
 		if bbTopRightY and bbTopRightX and bbBottomLeftY and bbBottomLeftX:
 			geom = Polygon.frombbox(bbBottomLeftX, bbBottomLeftY, 
