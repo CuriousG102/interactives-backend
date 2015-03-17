@@ -30,7 +30,7 @@ class CrimeReportPipeline(object):
             i.offense_district = item['offense_district']
             i.offense_area_command = item['offense_area_command']
             i.offense_investigator_assigned = item['offense_investigator_assigned']
-            i = i.save()
+            i.save()
             for offense in item['offenses']:
                 offenseToAdd, created = Offense.objects.get_or_create(name=offense)
                 i.offenses.add(offenseToAdd)
