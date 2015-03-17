@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from django.contrib.gis.geos import GEOSGeometry
+from django.contrib.gis.geos import Point
 
 from crimeAPI.models import Crime
 from interactivesBackend import secrets
@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 query = crime.offense_address
                 crimeLocInfo = geocoder.geocode(query = query)
                 startTime = time.clock()
-                crime.geocode_location = GEOSGeometry('POINT(' + unicode(crimeLocInfo.latitude) + ' ' + unicode(crimeLocInfo.longitude) + ')')
+                crime.geocode_location = Point(crimeLocInfo.longitude, crimeLocInfo.latitude)
                 crime.geocoded = True
                 crime.save()
             except geopy.exc.GeocoderQueryError:
