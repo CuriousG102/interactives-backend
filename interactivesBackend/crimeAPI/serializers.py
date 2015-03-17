@@ -2,7 +2,30 @@ from rest_framework import serializers
 from crimeAPI.models import Crime
 
 
-class CrimeSerializer(serializers.ModelSerializer):
+class CrimeDetailSerializer(serializers.ModelSerializer):
+	longitude = serializers.SerializerMethodField()
+	latitude = serializers.SerializerMethodField()
+
 	class Meta:
 		model = Crime
-		fields = ('report_number', 'report_time', 'offense_time', 'offenses', 'offense_address', 'offense_census_tract', 'offense_district', 'offense_area_command', 'offense_investigator_assigned', 'geocoded')
+		fields = ('id', 'report_number', 'report_time', 'offense_time', 'offenses', 'offense_address', 'offense_census_tract', 'offense_district', 'offense_area_command', 'offense_investigator_assigned', 'geocoded', 'longitude', 'latitude')
+
+	def get_longitude(self, obj):
+		return obj.x
+
+	def get_latitude(self, obj):
+		return obj.y
+
+class CrimeSerializer(serializers.ModelSerializer):
+	longitude = serializers.SerializerMethodField()
+	latitude = serializers.SerializerMethodField()
+
+	class Meta:
+		model = Crime
+		fields = ('id', 'report_time', 'offense_time', 'offense_district', 'offense_area_command', 'geocoded', 'longitude', 'latitude')
+
+	def get_longitude(self, obj):
+		return obj.x
+
+	def get_latitude(self, obj):
+		return obj.y

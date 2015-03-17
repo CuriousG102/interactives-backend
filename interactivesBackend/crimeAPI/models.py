@@ -12,10 +12,10 @@ class Crime(models.Model):
 	offense_area_command = models.CharField(max_length=50, null=True, db_index=True)
 	offense_investigator_assigned = models.CharField(max_length=50, null=True, db_index=True)
 	geocoded = models.BooleanField(default=False, db_index=True)
-	geocode_location = models.PointField(null=True, db_index=True)
+	geocode_location = models.PointField(null=True, spatial_index=True)
 
 class Offense(models.Model):
-	name = models.CharField(max_length=80)
+	name = models.CharField(max_length=80, db_index=True)
 
 	def __unicode__(self):
 		return self.name
