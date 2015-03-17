@@ -29,13 +29,13 @@ class CrimeList(generics.ListAPIView):
 		bbTopRightY = self.request.QUERY_PARAMS.get('bbTopRightY', None)
 		offense = self.request.QUERY_PARAMS.get('offense', None)
 
+		timezone = pytz.timezone('US/Central')
 		if offenseTimeRange[0]:
 			offenseTimeRange[0] = parse(offenseTimeRange[0])
 			queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
 		else:
-			timezone = pytz.timezone('US/Central')
+			
 			queryset = queryset.filter(offense_time__gte=timezone.localize(datetime.datetime.today() - MAX_ALLOWED_DAYS))
-
 
 		if offenseTimeRange[1]:
 			offenseTimeRange[1] = parse(offenseTimeRange[1])
