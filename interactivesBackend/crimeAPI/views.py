@@ -21,13 +21,13 @@ class CrimeList(generics.ListAPIView):
 		MAX_ALLOWED_DAYS = datetime.timedelta(days=7)
 
 		queryset = Crime.objects.all()
-		offenseTimeRange = [self.GET.get('offenseStartRange', None),
-							self.GET.get('offenseEndRange', None)]
-		bbBottomLeftX = self.GET.get('bbBottomLeftX', None)
-		bbBottomLeftY = self.GET.get('bbBottomLeftY', None)
-		bbTopRightX = self.GET.get('bbTopRightX', None)
-		bbTopRightY = self.GET.get('bbTopRightY', None)
-		offense = self.GET.get('offense', None)
+		offenseTimeRange = [self.request.QUERY_PARAMS.get('offenseStartRange', None),
+							self.request.QUERY_PARAMS.get('offenseEndRange', None)]
+		bbBottomLeftX = self.request.QUERY_PARAMS.get('bbBottomLeftX', None)
+		bbBottomLeftY = self.request.QUERY_PARAMS.get('bbBottomLeftY', None)
+		bbTopRightX = self.request.QUERY_PARAMS.get('bbTopRightX', None)
+		bbTopRightY = self.request.QUERY_PARAMS.get('bbTopRightY', None)
+		offense = self.request.QUERY_PARAMS.get('offense', None)
 
 		if offenseTimeRange[0]:
 			offenseTimeRange[0] = parse(offenseTimeRange[0])
