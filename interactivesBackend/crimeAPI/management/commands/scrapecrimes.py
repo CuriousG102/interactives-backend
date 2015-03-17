@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from crimeAPI.scraper.CrimeReport.CrimeReport.spiders import apd
 
+import scrapy
 from twisted.internet import reactor
 from scrapy.crawler import Crawler
 from scrapy import log, signals
