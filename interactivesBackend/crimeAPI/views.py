@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from models import Crime
-from serializers import CrimeSerializer
+from serializers import CrimeDetailSerializer, CrimeSerializer
 
 from django.shortcuts import render
 from rest_framework import generics
