@@ -50,7 +50,7 @@ class CrimeList(generics.ListAPIView):
 			queryset = queryset.filter(geocode_location__within=geom)
 
 		if offense:
-			queryset = queryset.filter(offense__name__exact=offense)
+			queryset = queryset.filter(offense__pk=offense)
 
 		return queryset
 
