@@ -12,7 +12,7 @@ class Command(BaseCommand):
     help = 'Geocode as many crimes as possible, starting with the most recent non-geocoded and working backwards'
 
     def handle(self, *args, **options):
-        crimes = Crime.objects.all().filter(geocoded=True).order_by('-offense_time')[:2500]
+        crimes = Crime.objects.all().filter(geocoded=False).order_by('-offense_time')[:2500]
         
         startTime = time.clock()
         for crime in crimes:
