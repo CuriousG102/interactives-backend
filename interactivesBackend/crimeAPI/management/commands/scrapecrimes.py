@@ -5,7 +5,7 @@ import scrapy
 from twisted.internet import reactor
 from scrapy.crawler import Crawler
 from scrapy import log, signals
-from scrapy.utils.project import get_project_settings
+from scrapy.settings import Settings
 
 class Command(BaseCommand):
     help = 'Update the PostGIS backend with the latest crimes\
@@ -13,7 +13,10 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         spider = apd.ApdSpider()
-        settings = get_project_settings()
+        settings = Settings({ 'BOT_NAME':'CrimeReport',
+                              'USER_AGENT':'Crime Scraper (+http://www.dailytexanonline.com/)',
+                              'ITEM_PIPELINES':'crimeAPI.scraper.CrimeReport.CrimeReport.pipelines.CrimeReportPipeline',
+            })
         crawler = Crawler(settings)
         crawler.signals.connect(reactor.stop, signal=signals.spider_closed)
         crawler.configure()
