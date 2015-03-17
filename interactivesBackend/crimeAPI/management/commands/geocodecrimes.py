@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 query = crime.offense_address
                 crimeLocInfo = geocoder.geocode(query = crimeQuery)
                 startTime = time.clock()
-                crime.geocode_location = GEOSGeometry('POINT(' + crimeLocInfo.latitude ' ' + crimeLocInfo.longitude + ')')
+                crime.geocode_location = GEOSGeometry('POINT(' + crimeLocInfo.latitude + ' ' + crimeLocInfo.longitude + ')')
                 crime.geocoded = True
                 crime.save()
             except geopy.exc.GeocoderQueryError:
