@@ -10,7 +10,7 @@ def Command(BaseCommand):
     help = 'Update the PostGIS backend with the latest crimes\
             reported in the city of Austin'
 
-    def handle(self):
+    def handle(self, *args):
         spider = apd.ApdSpider()
         settings = get_project_settings()
         crawler = Crawler(settings)
