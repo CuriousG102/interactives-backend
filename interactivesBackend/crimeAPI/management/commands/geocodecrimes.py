@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
             try:
                 query = crime.offense_address
-                crimeLocInfo = geocoder.geocode(query = crimeQuery)
+                crimeLocInfo = geocoder.geocode(query = query)
                 startTime = time.clock()
                 crime.geocode_location = GEOSGeometry('POINT(' + crimeLocInfo.latitude + ' ' + crimeLocInfo.longitude + ')')
                 crime.geocoded = True
