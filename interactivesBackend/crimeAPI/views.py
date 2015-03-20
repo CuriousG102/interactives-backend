@@ -16,14 +16,14 @@ from dateutil.parser import parse
 
 # Create your views here.
 class CrimeDetail(generics.RetrieveAPIView):
-    queryset = Crime.objects.all()
+    queryset = Crime.objects.all().prefetch_related('offenses')
     serializer_class = CrimeDetailSerializer
 
 class CrimeList(generics.ListAPIView):
     def get_queryset(self):
         MAX_ALLOWED_DAYS = datetime.timedelta(days=7)
 
-        queryset = Crime.objects.all()
+        queryset = Crime.objects.all().prefetch_related('offenses')
         offenseTimeRange = [self.request.QUERY_PARAMS.get('offenseStartRange', None),
                             self.request.QUERY_PARAMS.get('offenseEndRange', None)]
         bbBottomLeftX = self.request.QUERY_PARAMS.get('bbBottomLeftX', None)
