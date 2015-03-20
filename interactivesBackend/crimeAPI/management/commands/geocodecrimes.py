@@ -37,5 +37,5 @@ class Command(BaseCommand):
                 break
             except geopy.exc.GeocoderTimedOut:
                 pass
-            #except AttributeError:
-            #   pass
+            except AttributeError:
+               pass
