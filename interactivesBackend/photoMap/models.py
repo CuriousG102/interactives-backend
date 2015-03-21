@@ -26,6 +26,7 @@ class Event(models.Model):
 	name = models.CharField(max_length=80)
 	description = models.TextField(null=True, blank=True)
 	date = models.DateField()
+	endDate = models.DateField()
 	image = models.ImageField(upload_to='photoMap',
 		                      null=True, blank=True)
 

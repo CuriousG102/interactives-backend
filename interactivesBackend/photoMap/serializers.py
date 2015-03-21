@@ -13,7 +13,7 @@ class EventSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Event
-		fields = ('id', 'latitude', 'longitude', 'name', 'description', 'date', 'image', 'subevents')
+		fields = ('id', 'latitude', 'longitude', 'name', 'description', 'date', 'image', 'subevents', 'endDate')
 
 class SubEventSerializer(serializers.ModelSerializer):
 	class Meta:
