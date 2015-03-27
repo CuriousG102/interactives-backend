@@ -121,3 +121,7 @@ if not DEBUG:
     CACHE_MIDDLEWARE_SECONDS = 60 * 10
     CACHE_MIDDLEWARE_ALIAS = 'default'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 1000
+}
