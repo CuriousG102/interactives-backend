@@ -23,7 +23,7 @@ class CrimeList(generics.ListAPIView):
     def get_queryset(self):
         MAX_ALLOWED_DAYS = datetime.timedelta(days=7)
 
-        queryset = Crime.objects.all().prefetch_related('offenses')
+        queryset = Crime.objects.all()
         offenseTimeRange = [self.request.QUERY_PARAMS.get('offenseStartRange', None),
                             self.request.QUERY_PARAMS.get('offenseEndRange', None)]
         bbBottomLeftX = self.request.QUERY_PARAMS.get('bbBottomLeftX', None)
