@@ -1,8 +1,13 @@
 from rest_framework import serializers
 from photoMap.models import Map, Event, SubEvent
 
+class EventLimitedSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Event
+		fields = ('id', 'latitude', 'longitude', 'name', 'date', 'image', 'endDate')
+
 class MapSerializer(serializers.ModelSerializer):
-	events = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+	events = EventLimitedSerializer(many=True, read_only=True)
 
 	class Meta:
 		model = Map

@@ -6,7 +6,7 @@ from rest_framework import generics
 
 # Create your views here.
 class MapDetail(generics.RetrieveAPIView):
-	queryset = Map.objects.all()
+	queryset = Map.objects.all().prefetch_related('events')
 	serializer_class = MapSerializer
 
 class EventDetail(generics.RetrieveAPIView):
