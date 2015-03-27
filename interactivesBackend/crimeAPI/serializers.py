@@ -30,6 +30,7 @@ class CrimeListSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Crime
 		fields = ('id', 'report_time', 'offense_time', 'offense_district', 'offense_area_command', 'geocoded', 'longitude', 'latitude', 'offenses')
+		depth = 1
 
 	def get_longitude(self, obj):
 		if obj.geocode_location:
