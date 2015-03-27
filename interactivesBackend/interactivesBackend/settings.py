@@ -114,7 +114,7 @@ if not DEBUG:
     'django.middleware.cache.FetchFromCacheMiddleware',
     )
     CACHE_MIDDLEWARE_KEY_PREFIX = 'interactives'
-    CACHE_MIDDLEWARE_SECONDS = 60 * 10
+    CACHE_MIDDLEWARE_SECONDS = 60 * 60
     CACHE_MIDDLEWARE_ALIAS = 'default'
 
 REST_FRAMEWORK = {
