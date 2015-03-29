@@ -87,12 +87,19 @@ STATIC_ROOT = '/opt/interactives-backend/static/'
 STATIC_URL = '/static/'
 
 # configuration for api access
-import permissions
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'permissions.permissions.ReadOnly',
-    )
+    ),
+
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_jsonp.renderers.JSONPRenderer',
+    ),
+
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 1000,
 }
 
 if not DEBUG:
@@ -116,8 +123,3 @@ if not DEBUG:
     CACHE_MIDDLEWARE_KEY_PREFIX = 'interactives'
     CACHE_MIDDLEWARE_SECONDS = 60 * 60
     CACHE_MIDDLEWARE_ALIAS = 'default'
-
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 1000
-}
