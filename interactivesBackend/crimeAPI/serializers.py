@@ -2,7 +2,7 @@ from rest_framework import serializers
 from crimeAPI.models import Crime
 
 
-class OffenseListSerializer(serializer.ModelSerializer):
+class OffenseListSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Offense
 		fields = ('id', 'name')
