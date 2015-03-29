@@ -6,5 +6,5 @@ urlpatterns = (
 	url(r'^crime/(?P<pk>[0-9]+)/$', views.CrimeDetail.as_view()),
 	url(r'^crime/$', views.CrimeList.as_view()),
 	url(r'^count/$', views.CrimeCount.as_view()),
-    url(r'^offense/$' views.OffenseList.as_view()),
+    url(r'^offense/$', views.OffenseList.as_view()),
 )
