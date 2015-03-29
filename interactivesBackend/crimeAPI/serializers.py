@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from crimeAPI.models import Crime
+from crimeAPI.models import Crime, Offense
 
 
 class OffenseListSerializer(serializers.ModelSerializer):
