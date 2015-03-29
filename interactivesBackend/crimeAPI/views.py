@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from models import Crime
+from models import Crime, Offense
 from serializers import CrimeDetailSerializer, CrimeListSerializer, OffenseListSerializer
 
 from django.shortcuts import render
