@@ -2,6 +2,11 @@ from rest_framework import serializers
 from crimeAPI.models import Crime
 
 
+class OffenseListSerializer(serializer.ModelSerializer):
+	class Meta:
+		model = Offense
+		fields = ('id', 'name')
+
 class CrimeDetailSerializer(serializers.ModelSerializer):
 	longitude = serializers.SerializerMethodField()
 	latitude = serializers.SerializerMethodField()

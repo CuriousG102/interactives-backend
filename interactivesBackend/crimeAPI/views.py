@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from models import Crime
-from serializers import CrimeDetailSerializer, CrimeListSerializer
+from serializers import CrimeDetailSerializer, CrimeListSerializer, OffenseListSerializer
 
 from django.shortcuts import render
 from rest_framework.renderers import JSONRenderer
@@ -15,6 +15,10 @@ import datetime
 from dateutil.parser import parse
 
 # Create your views here.
+class OffenseList(generics.ListAPIView):
+    queryset = Offense.objects.all()
+    serializer_class = OffenseListSerializer
+
 class CrimeDetail(generics.RetrieveAPIView):
     queryset = Crime.objects.all().prefetch_related('offenses')
     serializer_class = CrimeDetailSerializer
