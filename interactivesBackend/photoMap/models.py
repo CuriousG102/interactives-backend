@@ -25,8 +25,8 @@ class Event(models.Model):
 	longitude = models.FloatField(validators=[validate_longitude])
 	name = models.CharField(max_length=80)
 	description = models.TextField(null=True, blank=True)
-	date = models.DateField()
-	endDate = models.DateField()
+	date = models.DateTimeField()
+	endDate = models.DateTimeField()
 	image = models.ImageField(upload_to='photoMap',
 		                      null=True, blank=True)
 
