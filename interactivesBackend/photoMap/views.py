@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import Http404
 from django.views.decorators.http import require_http_methods
 
-from models import Map, Event, SubEvent
-from serializers import MapSerializer, EventSerializer, SubEventSerializer
+from models import Map, Event
+from serializers import MapSerializer, EventSerializer
 from rest_framework import generics
 
 # Create your views here.
@@ -14,10 +14,6 @@ class MapDetail(generics.RetrieveAPIView):
 class EventDetail(generics.RetrieveAPIView):
 	queryset = Event.objects.all()
 	serializer_class = EventSerializer
-
-class SubEventDetail(generics.RetrieveAPIView):
-	queryset = SubEvent.objects.all()
-	serializer_class = SubEventSerializer
 
 @require_http_methods(["GET"])
 def map(request, map_id):

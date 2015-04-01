@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from photoMap.models import Map, Event, SubEvent
+from photoMap.models import Map, Event
 
 class EventLimitedSerializer(serializers.ModelSerializer):
 	class Meta:
@@ -11,16 +11,9 @@ class MapSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Map
-		fields = ('id', 'name', 'event_type', 'subevent_type', 'events')
+		fields = ('id', 'name', 'event_type', 'events')
 
 class EventSerializer(serializers.ModelSerializer):
-	subevents = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-
 	class Meta:
 		model = Event
-		fields = ('id', 'latitude', 'longitude', 'name', 'description', 'date', 'image', 'subevents', 'endDate')
-
-class SubEventSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = SubEvent
-		fields = ('id', 'name', 'description', 'time', 'image')
+		fields = ('id', 'latitude', 'longitude', 'name', 'description', 'date', 'image', 'endDate', 'eventLink')

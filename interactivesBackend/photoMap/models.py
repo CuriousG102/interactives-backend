@@ -14,7 +14,6 @@ def validate_longitude(longitude):
 class Map(models.Model):
 	name = models.CharField(max_length=50)
 	event_type = models.CharField(max_length=20)
-	subevent_type = models.CharField(max_length=20)
 
 	def __unicode__(self):
 		return self.name
@@ -29,17 +28,7 @@ class Event(models.Model):
 	endDate = models.DateTimeField()
 	image = models.ImageField(upload_to='photoMap',
 		                      null=True, blank=True)
-
-	def __unicode__(self):
-		return self.name
-
-class SubEvent(models.Model):
-	event = models.ForeignKey(Event, related_name='subevents')
-	name = models.CharField(max_length=80)
-	description = models.TextField()
-	time = models.DateTimeField(null=True, blank=True)
-	image = models.ImageField(upload_to = 'photoMap',
-							  null=True, blank=True)
+	eventLink = models.URLField(null=True, blank=True)
 
 	def __unicode__(self):
 		return self.name
