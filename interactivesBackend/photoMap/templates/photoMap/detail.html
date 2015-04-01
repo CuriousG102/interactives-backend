@@ -35,7 +35,7 @@
 
     <script>
       $(window).load(function () {
-        getData("http://127.0.0.1:8000/photoMap/api/maps/{{ map.pk }}/", populateMap); 
+        getData("{% url 'photoMap:mapAPIListing' map.pk %}", populateMap); 
       });
     </script>
 

@@ -43,7 +43,11 @@ var placeEvent = function(event) {
 }
 
 var getEvent = function() {
-  getData("http://127.0.0.1:8000/photoMap/api/events/" + this.id, populateOverlay);
+  pathArray = location.href.split( '/' );
+  protocol = pathArray[0];
+  host = pathArray[2];
+  url = protocol + '//' + host;
+  getData(url + "/photoMap/api/events/" + this.id, populateOverlay);
 }
 
 var populateOverlay = function(event) {
