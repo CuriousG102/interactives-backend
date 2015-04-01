@@ -87,6 +87,7 @@ REST_FRAMEWORK = {
 if not DEBUG:
     STATIC_ROOT = '/opt/interactives-backend/static/'
     MEDIA_ROOT = '/opt/interactives-backend/media/'
+    MEDIA_URL = '/media/'
 
     CACHES = {
         'default': {
