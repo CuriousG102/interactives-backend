@@ -1,0 +1,278 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+.body {
+	height: calc(100% - 50px);
+	width: 100%;
+}
+
+/*a {
+	color: #B7B7B7;
+	text-decoration: none;
+}
+a:hover,
+a:focus {
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+a:focus {
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}*/
+
+.sidebar-title {
+	text-align: center;
+	color: #EDEDED;
+}
+
+.sidebar {
+  	background-color: #4C4C4C;
+  	height: 80%;
+  	overflow-y: scroll;
+}
+
+.bottom-box-outer {
+	background-color: #5E5E5E;
+	display: inline-block;
+	width: 100%;
+	height: 20%;
+}
+
+.bottom-box-inner {
+	background-color: #5E5E5E;
+	width: 100%;
+	height: 100%;
+	overflow-x: scroll;
+	margin-right: -999em;
+}
+
+.nameplate {
+	width: 340px;
+	height: 42px;
+	margin: 5px;
+}
+
+#interactive-title {
+	position: absolute;
+	display: inline;
+	font-family: inherit;
+  	font-weight: 500;
+  	padding-left: 30px;
+	padding-top: 1px;
+    font-size: 30px;
+}
+
+.head {
+	margin: 0px;
+	top: 0px;
+	left: 0px;
+	display: block;
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #B2B2B2;
+}
+
+#map {
+	width: 100%;
+	height: 79%;
+}
+
+#event-scroll {
+	padding: 0px;
+	margin: 0px;
+	height: 100%;
+  	list-style: none;
+  	margin-right: -999em;
+  	float: left;
+}
+
+.event {
+	width: 200px;
+	height: 100%;
+	position: relative;
+	float: left;
+	display: inline;
+}
+
+.event img {
+	padding-top: 5px;
+	height: 95%;
+	width: 200px;
+}
+
+.event h2 {
+	text-align: center;
+	background: rgba(0, 0, 0, 0.55);
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 900;
+	text-transform: uppercase;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	font-size: 2rem;
+	transform: translate(-50%, -50%);
+}
+
+#exit-button,
+#attr-exit-button {
+	border-color: #FFFFFF;
+	color: #FFFFFF;
+	border-style: solid;
+	border-radius: 40px;
+	border-width: 1px;
+	background-color: #000000;
+	z-index: 21;
+	font-size: 20px;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	position: absolute;
+	margin-top: -19px;
+    margin-left: -19px;
+	padding: 9px;
+}
+
+#exit-button:hover,
+#attr-exit-button:hover {
+	color: #808080;
+	border-color: #808080;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.background {
+	z-index: 1;
+	position: relative;
+}
+
+#fade-bg,
+#attr-fade-bg {
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	right: 0%;
+	bottom: 0%;
+	z-index: 2;
+	opacity: 0.5;
+	background-color: #000000;
+	cursor: default;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+#overlay,
+#overlay-box,
+#attribution-overlay,
+#attribution-box {
+	z-index: 20;
+	position: absolute;
+	border-radius: 5px;
+}
+
+#attribution-box {
+	overflow-y: scroll;
+}
+
+#overlay,
+#attribution-overlay {
+	height: 88%;
+	top: 6%;
+	left: 6%;
+	right: 6%;
+	bottom: 6%;
+}
+
+#overlay-box {
+	padding-left: 70px;
+	padding-right: 70px;
+	background-image: none;
+	background-size: cover;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+#overlay-text {
+	display: inline-block;
+	background: rgba(0, 0, 0, 0.75);
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	text-align: center;
+	padding: 20px;
+	padding-left: 170px;
+	padding-right: 170px; 
+	border-radius: 5px;
+}
+
+#attribution-link {
+	font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 22px;
+    padding-right: 5px;
+    z-index: 2;
+    position: absolute;
+    bottom: 15px;
+    text-align: right;
+    right: 0px;
+}
+
+#attribution-link:hover {
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+#attribution-box {
+	background: #FFFFFF;
+	padding: 50px;
+	overflow-y: scroll;
+}
+
+.attContainer {
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 200px;
+}
+
+.attPortraitContainer {
+    border-radius: 90px;
+    border-style: solid;
+    border-width: 2px;
+    height: 125px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    width: 125px;
+}
+
+.attContainer h3 {
+    margin-top: 7px;
+    text-align: center;
+}
+
+.leaflet-bottom,
+.leaflet-control {
+	z-index: 2; 
+}
