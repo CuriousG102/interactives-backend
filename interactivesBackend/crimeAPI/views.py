@@ -10,7 +10,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.contrib.gis.geos import Polygon
 
-import pytz
 import datetime
 from dateutil.parser import parse
 
@@ -36,7 +35,6 @@ class CrimeList(generics.ListAPIView):
         bbTopRightY = self.request.QUERY_PARAMS.get('bbTopRightY', None)
         offense = self.request.QUERY_PARAMS.get('offense', None)
 
-        timezone = pytz.timezone('US/Central')
         if offenseTimeRange[0]:
             offenseTimeRange[0] = parse(offenseTimeRange[0])
             queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
@@ -83,7 +81,6 @@ class CrimeCount(APIView):
         bbTopRightY = self.request.QUERY_PARAMS.get('bbTopRightY', None)
         offense = self.request.QUERY_PARAMS.get('offense', None)
 
-        timezone = pytz.timezone('US/Central')
         if offenseTimeRange[0]:
             offenseTimeRange[0] = parse(offenseTimeRange[0])
             queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
