@@ -4,7 +4,8 @@ from models import Crime, Offense
 from serializers import CrimeDetailSerializer, CrimeListSerializer, OffenseListSerializer
 
 from django.shortcuts import render
-from rest_framework.renderers import JSONRenderer
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
+from rest_framework_jsonp.renderers import JSONPRenderer
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -65,7 +66,7 @@ class CrimeCount(APIView):
     """
     A view that returns the count of active users.
     """
-    renderer_classes = (JSONRenderer, )
+    renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
 
     def get(self, request, format=None):
         queryset = Crime.objects.all()
