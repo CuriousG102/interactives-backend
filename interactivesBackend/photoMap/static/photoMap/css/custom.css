@@ -12,21 +12,6 @@ html, body {
 	width: 100%;
 }
 
-/*a {
-	color: #B7B7B7;
-	text-decoration: none;
-}
-a:hover,
-a:focus {
-	color: #FFFFFF;
-	text-decoration: underline;
-}
-a:focus {
-	outline: thin dotted;
-	outline: 5px auto -webkit-focus-ring-color;
-	outline-offset: -2px;
-}*/
-
 .sidebar-title {
 	text-align: center;
 	color: #EDEDED;
@@ -101,11 +86,17 @@ a:focus {
 	display: inline;
 }
 
-.event img {
+.event-box {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+}
+
+/* .event img {
 	padding-top: 5px;
 	height: 95%;
 	width: 200px;
-}
+} */
 
 .event h2 {
 	text-align: center;

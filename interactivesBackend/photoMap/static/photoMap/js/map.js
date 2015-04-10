@@ -18,7 +18,6 @@ var myIcon;
 var map;
 
 var placeEvent = function(event) {
-  console.log("I'm a dinosaur");
   // add event marker to map
   L.marker([event.latitude,event.longitude], {icon: myIcon})
   .addEventListener("click", getEvent, {id: event.id})
@@ -35,12 +34,9 @@ var placeEvent = function(event) {
 
   // add event to bottom scroll
   var eventBox = $("<li/>", { "class": "event",}).bind("click", function() { getEvent.call({id: event.id}); } );
-  eventBox.append("<a href=#><img src='" + eventImage + "' alt='" + event.name + "'><h2>" + event.name + "<br>" + $.format.date(event.date, "MMM d") + "</h2></a>");
+  eventBox.append("<a href=#><div class='event-box' style='background-image: " + eventImage + "'><h2>" + event.name + "<br>" + $.format.date(event.date, "MMM d") + "</h2></a>");
   $("#event-scroll").append(eventBox);
 
-  // console.log($.format.date(event.date, "ddd, MMMM d"))
-  console.log("They died millions of years ago :-(")
-}
 
 var getEvent = function() {
   pathArray = location.href.split( '/' );
