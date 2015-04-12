@@ -11,7 +11,7 @@ var getData = function(url4, callback) {
 }
 
 // set default event image
-var defaultImage = "http://1.bp.blogspot.com/_72-XGWCgZog/S_5p5JzkcaI/AAAAAAAACYU/as-Yj4wpHcI/s1600/cool_cat.jpg";
+var defaultImage;
 
 var myIcon;
 
@@ -78,6 +78,7 @@ var populateOverlay = function(event) {
 }
 
 var populateMap = function(d) {
+  defaultImage = d.default_image
 
   // replace titles
   $("#interactive-title").html(d.name);
