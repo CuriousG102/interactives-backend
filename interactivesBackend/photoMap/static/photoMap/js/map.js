@@ -11,7 +11,7 @@ var getData = function(url4, callback) {
 }
 
 // set default event image
-var defaultImage = "http://www.nbn.org.il/gosouth/wp-content/uploads/2014/05/summer.jpg";
+var defaultImage = "http://1.bp.blogspot.com/_72-XGWCgZog/S_5p5JzkcaI/AAAAAAAACYU/as-Yj4wpHcI/s1600/cool_cat.jpg";
 
 var myIcon;
 
@@ -26,7 +26,7 @@ var placeEvent = function(event) {
   // set default image for bottom scroll
   var eventImage = event.image;
   if (eventImage === null) {
-    var eventImage = defaultImage;
+    eventImage = defaultImage;
   };
 
   var startingDate = new Date(event.date);
@@ -34,8 +34,9 @@ var placeEvent = function(event) {
 
   // add event to bottom scroll
   var eventBox = $("<li/>", { "class": "event",}).bind("click", function() { getEvent.call({id: event.id}); } );
-  eventBox.append("<a href=#><div class='event-box' style='background-image: " + eventImage + "'><h2>" + event.name + "<br>" + $.format.date(event.date, "MMM d") + "</h2></a>");
+  eventBox.append("<a href=#><div class='event-box' style='background-image: url(" + eventImage + ")' /><h2>" + event.name + "<br>" + $.format.date(event.date, "MMM d") + "</h2></a>");
   $("#event-scroll").append(eventBox);
+}
 
 
 var getEvent = function() {
@@ -121,7 +122,7 @@ $(window).load(function () {
     iconSize: [25, 41],
     iconAnchor: [12, 40],
     shadowUrl: 'http://cdn.leafletjs.com/leaflet-0.7.3/images/marker-shadow.png',
-    shadowRetinaUrl: 'http://cdn.leafletjs.com/leaflet-0.7.3/images/mages/marker-shadow.png',
+    shadowRetinaUrl: 'http://cdn.leafletjs.com/leaflet-0.7.3/images/marker-shadow.png',
     shadowSize: [41, 41],
     shadowAnchor: [12, 40]
   }); 
