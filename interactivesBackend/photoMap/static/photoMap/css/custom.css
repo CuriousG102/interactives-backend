@@ -265,6 +265,10 @@ html, body {
 
 
 @media (max-width: 480px) {
+	.nameplate {
+		width: 310px;
+	}
+
 	#interactive-title {
 		display: none;
 	}
@@ -297,4 +301,28 @@ html, body {
 		padding: 10px;
 	}
 
+}
+
+@media (min-width: 480px) and (max-width: 800px) {
+	#interactive-title {
+		padding-left: 5px;
+		font-size: 2rem;
+		line-height: 2rem;
+	}
+
+	#overlay,
+	#attribution-overlay {
+		height: 88%;
+		top: 3%;
+		left: 3%;
+		right: 3%;
+		bottom: 3%;
+	}
+
+	#overlay-text {
+		padding: 2%;
+		padding-left: 10%;
+		padding-right: 10%; 
+		border-radius: 5px;
+	}
 }
