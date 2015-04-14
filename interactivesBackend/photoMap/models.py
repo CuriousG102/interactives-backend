@@ -11,10 +11,15 @@ def validate_longitude(longitude):
 
 
 # Create your models here.
+class Author(models.Model):
+	name = models.CharField(max_length=50)
+	profileImage = models.ImageField(upload_to='photoMapProfileImage')
+
 class Map(models.Model):
 	name = models.CharField(max_length=50)
 	event_type = models.CharField(max_length=20)
 	default_image = models.ImageField(upload_to='photoMapDefaults')
+	authors = models.ManyToManyField(Author)
 
 	def __unicode__(self):
 		return self.name

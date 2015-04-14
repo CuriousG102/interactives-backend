@@ -18,7 +18,7 @@ class EventDetail(generics.RetrieveAPIView):
 @require_http_methods(["GET"])
 def map(request, map_id):
     try:
-        map = Map.objects.get(pk=map_id)
+        map = Map.objects.get(pk=map_id).prefetch_related('authors')
     except Map.DoesNotExist:
         raise Http404("Map does not exist")
     return render(request, 'photoMap/detail.html', {'map':map})

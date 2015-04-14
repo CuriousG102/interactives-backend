@@ -73,46 +73,15 @@
         <div id="attribution-box">
           <h2>Developed by: </h2>
 
-          <div class="attContainer">
-            <div class="attPortraitContainer">
-              <img src="images/name.jpg">
+          {% for author in map.authors.all %}
+            <div class="attContainer">
+              <div class="attPortraitContainer">
+                <img src="{{author.profileImage.url}}">
+              </div>
+              <a href="http://www.dailytexanonline.com/author/name-name"><h3>{{author.name}}</h3></a>
             </div>
-            <a href="http://www.dailytexanonline.com/author/name-name"><h3>name</h3></a>
-          </div>
+          {% endfor %}
 
-          <div class="attContainer">
-            <div class="attPortraitContainer">
-              <img src="images/name.jpg">
-            </div>
-            <a href="http://www.dailytexanonline.com/author/name-name"><h3>name</h3></a>
-          </div>
-
-          <div class="attContainer">
-            <div class="attPortraitContainer">
-              <img src="images/name.jpg">
-            </div>
-            <a href="http://www.dailytexanonline.com/author/name-name"><h3>name</h3></a>
-          </div>
-
-          <div class="attContainer">
-            <div class="attPortraitContainer">
-              <img src="images/name.jpg">
-            </div>
-            <a href="http://www.dailytexanonline.com/author/name-name"><h3>name</h3></a>
-          </div>
-
-          <div class="attContainer">
-            <div class="attPortraitContainer">
-              <img src="images/name.jpg">
-            </div>
-            <a href="http://www.dailytexanonline.com/author/name-name"><h3>name</h3></a>
-          </div>
-
-          <div class="attContainer">
-            <div class="attPortraitContainer">
-              <img src="images/name.jpg">
-            </div>
-            <a href="http://www.dailytexanonline.com/author/name-name"><h3>name</h3></a>
           </div>
         </div>
       </div> <!-- close attribution-overlay -->
