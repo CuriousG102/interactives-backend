@@ -14,6 +14,7 @@ def validate_longitude(longitude):
 class Map(models.Model):
 	name = models.CharField(max_length=50)
 	event_type = models.CharField(max_length=20)
+	default_image = models.ImageField(upload_to='photoMapDefaults')
 
 	def __unicode__(self):
 		return self.name

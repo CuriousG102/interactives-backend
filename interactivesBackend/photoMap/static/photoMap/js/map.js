@@ -11,14 +11,13 @@ var getData = function(url4, callback) {
 }
 
 // set default event image
-var defaultImage = "http://www.nbn.org.il/gosouth/wp-content/uploads/2014/05/summer.jpg";
+var defaultImage;
 
 var myIcon;
 
 var map;
 
 var placeEvent = function(event) {
-  console.log("I'm a dinosaur");
   // add event marker to map
   L.marker([event.latitude,event.longitude], {icon: myIcon})
   .addEventListener("click", getEvent, {id: event.id})
@@ -27,7 +26,7 @@ var placeEvent = function(event) {
   // set default image for bottom scroll
   var eventImage = event.image;
   if (eventImage === null) {
-    var eventImage = defaultImage;
+    eventImage = defaultImage;
   };
 
   var startingDate = new Date(event.date);
@@ -35,12 +34,10 @@ var placeEvent = function(event) {
 
   // add event to bottom scroll
   var eventBox = $("<li/>", { "class": "event",}).bind("click", function() { getEvent.call({id: event.id}); } );
-  eventBox.append("<a href=#><img src='" + eventImage + "' alt='" + event.name + "'><h2>" + event.name + "<br>" + $.format.date(event.date, "MMM d") + "</h2></a>");
+  eventBox.append("<a href=#><div class='event-box' style='background-image: url(" + eventImage + ")' /><h2>" + event.name + "<br>" + $.format.date(event.date, "MMM d") + "</h2></a>");
   $("#event-scroll").append(eventBox);
-
-  // console.log($.format.date(event.date, "ddd, MMMM d"))
-  console.log("They died millions of years ago :-(")
 }
+
 
 var getEvent = function() {
   pathArray = location.href.split( '/' );
@@ -81,6 +78,7 @@ var populateOverlay = function(event) {
 }
 
 var populateMap = function(d) {
+  defaultImage = d.default_image
 
   // replace titles
   $("#interactive-title").html(d.name);
@@ -125,7 +123,7 @@ $(window).load(function () {
     iconSize: [25, 41],
     iconAnchor: [12, 40],
     shadowUrl: 'http://cdn.leafletjs.com/leaflet-0.7.3/images/marker-shadow.png',
-    shadowRetinaUrl: 'http://cdn.leafletjs.com/leaflet-0.7.3/images/mages/marker-shadow.png',
+    shadowRetinaUrl: 'http://cdn.leafletjs.com/leaflet-0.7.3/images/marker-shadow.png',
     shadowSize: [41, 41],
     shadowAnchor: [12, 40]
   }); 

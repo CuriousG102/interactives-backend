@@ -11,7 +11,7 @@ class MapSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Map
-		fields = ('id', 'name', 'event_type', 'events')
+		fields = ('id', 'name', 'event_type', 'events', 'default_image')
 
 class EventSerializer(serializers.ModelSerializer):
 	class Meta:
