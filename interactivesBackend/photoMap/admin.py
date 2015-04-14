@@ -2,7 +2,7 @@ from django.contrib import admin
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 
 # Register your models here.
-from photoMap.models import Map, Event
+from photoMap.models import Map, Event, Author
 
 class EventInline(NestedStackedInline):
 	model = Event
@@ -14,3 +14,4 @@ class MapAdmin(NestedModelAdmin):
 	inlines = [EventInline]
 
 admin.site.register(Map, MapAdmin)
+admin.site.register(Author)
