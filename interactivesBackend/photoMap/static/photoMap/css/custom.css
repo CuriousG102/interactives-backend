@@ -263,13 +263,9 @@ html, body {
 }
 
 
-@media only screen and (max-device-width: 480px) {
+@media (max-width: 480px) {
 	#interactive-title {
 		display: none;
-	}
-
-	.nameplate {
-		width: 90%;
 	}
 
 	#overlay,
@@ -283,8 +279,8 @@ html, body {
 
 	#overlay-text {
 		padding: 2%;
-		padding-left: 3%;
-		padding-right: 3%; 
+		padding-left: 10%;
+		padding-right: 10%; 
 		border-radius: 5px;
 	}
 
