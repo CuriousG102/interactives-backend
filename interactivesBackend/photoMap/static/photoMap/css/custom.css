@@ -176,10 +176,6 @@ html, body {
 	border-radius: 5px;
 }
 
-#attribution-box {
-	overflow-y: scroll;
-}
-
 #overlay,
 #attribution-overlay {
 	height: 88%;
@@ -205,7 +201,6 @@ html, body {
 	color: white;
 	font-family: 'Roboto', sans-serif;
 	position: relative;
-	vertical-align: middle;
 	text-align: center;
 	padding: 20px;
 	padding-left: 170px;
@@ -232,9 +227,11 @@ html, body {
 }
 
 #attribution-box {
+	height: 100%;
 	background: #FFFFFF;
 	padding: 50px;
 	overflow-y: scroll;
+	text-align: center;
 }
 
 .attContainer {
@@ -286,11 +283,17 @@ html, body {
 
 	#overlay-text {
 		padding: 2%;
-		padding-top: 50%;
 		padding-left: 3%;
 		padding-right: 3%; 
 		border-radius: 5px;
-		font-size: 1rem;
+	}
+
+	#eventName, #eventDate {
+		font-size: 2.3rem;
+	}
+
+	#eventDesc {
+		font-size: 1.4rem;
 	}
 
 	#attribution-box {
