@@ -14,6 +14,7 @@ def validate_longitude(longitude):
 class Author(models.Model):
 	name = models.CharField(max_length=50)
 	profileImage = models.ImageField(upload_to='photoMapProfileImage')
+	link = models.URLField()
 
 class Map(models.Model):
 	name = models.CharField(max_length=50)
