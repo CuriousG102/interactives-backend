@@ -71,6 +71,7 @@ var populateOverlay = function(event) {
   $("#eventName").html(event.name);
   $("#eventDate").html(date);
   $("#eventDesc").html(event.description);
+  $("#eventLink").unbind('click');
   $("#eventLink").on('click', 
                      function(ev) {
                        if (event.eventLink != null) window.open(event.eventLink);
