@@ -59,9 +59,9 @@ var populateOverlay = function(event) {
   var endingDate = new Date(event.endDate);
 
   if (startingDate.getYear() === endingDate.getYear() && startingDate.getMonth() === endingDate.getMonth() && startingDate.getDay() === endingDate.getDay()) {
-    var date = $.format.date(event.date, "MMM d");
+    var date = $.format.date(event.date, "MMMM d");
   } else {
-    var date = $.format.date(event.date, "MMM d") + " to " + $.format.date(event.endDate, "MMM d");
+    var date = $.format.date(event.date, "MMMM d") + " to " + $.format.date(event.endDate, "MMMM d");
   };
 
   // populate overlay
