@@ -75,6 +75,7 @@ var populateOverlay = function(event) {
                      function(ev) {
                        if (event.eventLink != null) window.open(event.eventLink);
                        ev.preventDefault();
+                       ev.stopPropagation();
                      });
 
   $("#overlay").fadeToggle("fast");
