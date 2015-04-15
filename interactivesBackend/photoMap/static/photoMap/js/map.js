@@ -71,9 +71,7 @@ var populateOverlay = function(event) {
   $("#eventName").html(event.name);
   $("#eventDate").html(date);
   $("#eventDesc").html(event.description);
-  $("#eventLink").attr("onclick", "window.open('" + event.eventLink + "');");
-
-  .click(function() {
+  $("#eventLink").click(function() {
     if (event.eventLink != null) window.open(event.eventLink);
   });
 
