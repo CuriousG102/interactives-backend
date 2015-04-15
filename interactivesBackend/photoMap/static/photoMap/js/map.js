@@ -71,6 +71,7 @@ var populateOverlay = function(event) {
   $("#eventName").html(event.name);
   $("#eventDate").html(date);
   $("#eventDesc").html(event.description);
+  $("#eventLink").attr("href", event.eventLink);
 
   $("#overlay").fadeToggle("fast");
   $("#fade-bg").fadeToggle("fast");
