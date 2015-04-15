@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('photoMap', '0009_merge'),
+        ('photoMap', '0008_auto_20150414_1805'),
     ]
 
     operations = [
