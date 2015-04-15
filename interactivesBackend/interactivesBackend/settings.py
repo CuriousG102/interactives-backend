@@ -26,7 +26,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['104.131.36.238']
+ALLOWED_HOSTS = ['104.131.36.238', 'ps414894.dreamhost.com']
 
 
 # Application definition
@@ -120,7 +120,7 @@ if not DEBUG:
             # The following settings are not used with sqlite3:
             'USER': secrets.DB_USER,
             'PASSWORD': secrets.DB_PASS,
-            'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+            'HOST': 'localhost',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
             'PORT': '',                      # Set to empty string for default.
         }
     }
