@@ -16,6 +16,9 @@ class Author(models.Model):
 	profileImage = models.ImageField(upload_to='photoMapProfileImage')
 	link = models.URLField()
 
+	def __unicode__(self):
+		return self.name
+
 class Map(models.Model):
 	name = models.CharField(max_length=50)
 	event_type = models.CharField(max_length=20)
