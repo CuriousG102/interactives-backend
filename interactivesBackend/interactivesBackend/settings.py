@@ -26,7 +26,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['104.131.36.238', 'ps414894.dreamhost.com']
+ALLOWED_HOSTS = ['104.131.36.238', 'ps414894.dreamhost.com', 'interactives.dailytexanonline.com']
 
 
 # Application definition
