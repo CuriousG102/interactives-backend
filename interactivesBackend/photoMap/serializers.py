@@ -22,4 +22,4 @@ class EventSerializer(serializers.ModelSerializer):
 		fields = ('id', 'latitude', 'longitude', 'name', 'description', 'date', 'image', 'endDate', 'eventLink')
 
 	def get_description(self, obj):
-		return string.replace('\n', obj.description, '<br>')
+		return string.replace(obj.description, '\n', '<br>')
