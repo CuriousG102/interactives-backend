@@ -35,6 +35,7 @@ class CrimeList(generics.ListAPIView):
         bbTopRightX = self.request.QUERY_PARAMS.get('bbTopRightX', None)
         bbTopRightY = self.request.QUERY_PARAMS.get('bbTopRightY', None)
         offense = self.request.QUERY_PARAMS.get('offense', None)
+        category = self.request.QUERY_PARAMS.get('category', None)
 
         if offenseTimeRange[0]:
             offenseTimeRange[0] = parse(offenseTimeRange[0])
@@ -57,6 +58,9 @@ class CrimeList(generics.ListAPIView):
 
         if offense:
             queryset = queryset.filter(offenses__pk=offense)
+
+        if category:
+            queryset = queryset.filter(category__pk=category)
 
         return queryset
 
@@ -81,6 +85,7 @@ class CrimeCount(APIView):
         bbTopRightX = self.request.QUERY_PARAMS.get('bbTopRightX', None)
         bbTopRightY = self.request.QUERY_PARAMS.get('bbTopRightY', None)
         offense = self.request.QUERY_PARAMS.get('offense', None)
+        category = self.request.QUERY_PARAMS.get('category', None)
 
         if offenseTimeRange[0]:
             offenseTimeRange[0] = parse(offenseTimeRange[0])
@@ -97,6 +102,9 @@ class CrimeCount(APIView):
 
         if offense:
             queryset = queryset.filter(offenses__pk=offense)
+
+        if category:
+            queryset = queryset.filter(category__pk=category)
 
 
 
