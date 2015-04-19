@@ -16,7 +16,7 @@ class Crime(models.Model):
 
 class Offense(models.Model):
 	name = models.CharField(max_length=80, db_index=True)
-	category = models.ForeignKey('Category', null=True)
+	category = models.ForeignKey('Category', null=True, blank=True)
 
 	def __unicode__(self):
 		return self.name
