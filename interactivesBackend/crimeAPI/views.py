@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-from models import Crime, Offense
-from serializers import CrimeDetailSerializer, CrimeListSerializer, OffenseListSerializer
+from models import Crime, Offense, Category
+from serializers import CrimeDetailSerializer, CrimeListSerializer, OffenseListSerializer, CategoryListSerializer
 
 from django.shortcuts import render
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
@@ -15,6 +15,10 @@ import datetime
 from dateutil.parser import parse
 
 # Create your views here.
+class CategoryList(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategoryListSerializer
+
 class OffenseList(generics.ListAPIView):
     queryset = Offense.objects.all()
     serializer_class = OffenseListSerializer

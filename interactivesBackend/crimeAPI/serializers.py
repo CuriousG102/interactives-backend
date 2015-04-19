@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from crimeAPI.models import Crime, Offense
 
+class CategoryListSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Offense
+		fields = ('id', 'name')
 
 class OffenseListSerializer(serializers.ModelSerializer):
 	class Meta:
