@@ -22,7 +22,7 @@ class Offense(models.Model):
 		return self.name
 
 class Category(models.Model):
-	name = models.CharField(max_lenth=50, db_index=True)
+	name = models.CharField(max_length=50, db_index=True)
 
 	def __unicode__(self):
 		return self.name
