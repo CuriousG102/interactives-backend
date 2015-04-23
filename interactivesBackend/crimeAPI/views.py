@@ -13,6 +13,7 @@ from django.contrib.gis.geos import Polygon
 
 import datetime
 from dateutil.parser import parse
+from pytz import timezone
 
 # Create your views here.
 class CategoryList(generics.ListAPIView):
@@ -31,7 +32,7 @@ class CrimeList(generics.ListAPIView):
     def get_queryset(self):
         MAX_ALLOWED_DAYS = datetime.timedelta(days=7)
 
-        queryset = Crime.objects.all().prefetch_related('offenses')
+        queryset = Crime.objects.all().prefetch_related('offenses').prefetch_related('offenses__category')
         offenseTimeRange = [self.request.QUERY_PARAMS.get('offenseStartRange', None),
                             self.request.QUERY_PARAMS.get('offenseEndRange', None)]
         bbBottomLeftX = self.request.QUERY_PARAMS.get('bbBottomLeftX', None)
@@ -44,7 +45,8 @@ class CrimeList(generics.ListAPIView):
         if offenseTimeRange[0]:
             offenseTimeRange[0] = parse(offenseTimeRange[0])
         else:
-            offenseTimeRange[0] = datetime.datetime.today() - MAX_ALLOWED_DAYS
+            central = timezone('US/Central')
+            offenseTimeRange[0] = central.localize(datetime.datetime.today() - MAX_ALLOWED_DAYS)
         
         queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
 
@@ -64,7 +66,7 @@ class CrimeList(generics.ListAPIView):
             queryset = queryset.filter(offenses__pk=offense)
 
         if category:
-            queryset = queryset.filter(category__pk=category)
+            queryset = queryset.filter(offenses__category__pk=category)
 
         return queryset
 
@@ -108,7 +110,7 @@ class CrimeCount(APIView):
             queryset = queryset.filter(offenses__pk=offense)
 
         if category:
-            queryset = queryset.filter(category__pk=category)
+            queryset = queryset.filter(offenses__category__pk=category)
 
 
 
