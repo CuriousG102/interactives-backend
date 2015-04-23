@@ -43,10 +43,10 @@ class CrimeList(generics.ListAPIView):
 
         if offenseTimeRange[0]:
             offenseTimeRange[0] = parse(offenseTimeRange[0])
-            queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
         else:
-            offenseTimeRange[0] = timezone.localize(datetime.datetime.today() - MAX_ALLOWED_DAYS)
-            queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
+            offenseTimeRange[0] = datetime.datetime.today() - MAX_ALLOWED_DAYS
+        
+        queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
 
         if offenseTimeRange[1]:
             offenseTimeRange[1] = parse(offenseTimeRange[1])
