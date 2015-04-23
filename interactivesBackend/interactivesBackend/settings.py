@@ -26,6 +26,8 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
+DEV_SERVER_ENVIRONMENT = True
+
 ALLOWED_HOSTS = ['104.131.36.238', 'ps414894.dreamhost.com', 'interactives.dailytexanonline.com']
 
 
@@ -84,7 +86,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 500,
 }
 
-if not DEBUG:
+if DEV_SERVER_ENVIRONMENT:
     STATIC_ROOT = '/opt/interactives-backend/static/'
     MEDIA_ROOT = '/opt/interactives-backend/media/'
     MEDIA_URL = '/media/'
