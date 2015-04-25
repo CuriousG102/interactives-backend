@@ -44,18 +44,19 @@ class CrimeList(generics.ListAPIView):
 
         if offenseTimeRange[0]:
             offenseTimeRange[0] = parse(offenseTimeRange[0])
-        else:
-            central = timezone('US/Central')
-            offenseTimeRange[0] = central.localize(datetime.datetime.today() - MAX_ALLOWED_DAYS)
+        # else:
+        #     central = timezone('US/Central')
+        #     offenseTimeRange[0] = central.localize(datetime.datetime.today() - MAX_ALLOWED_DAYS)
         
         queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
 
         if offenseTimeRange[1]:
             offenseTimeRange[1] = parse(offenseTimeRange[1])
-        if offenseTimeRange[1] and ((offenseTimeRange[1] - offenseTimeRange[0]) <= MAX_ALLOWED_DAYS):
             queryset = queryset.filter(offense_time__lte=offenseTimeRange[1])
-        else:
-            queryset = queryset.filter(offense_time__lte=offenseTimeRange[0] + MAX_ALLOWED_DAYS)
+        # if offenseTimeRange[1] and ((offenseTimeRange[1] - offenseTimeRange[0]) <= MAX_ALLOWED_DAYS):
+        #     queryset = queryset.filter(offense_time__lte=offenseTimeRange[1])
+        # else:
+        #     queryset = queryset.filter(offense_time__lte=offenseTimeRange[0] + MAX_ALLOWED_DAYS)
 
         if bbTopRightY and bbTopRightX and bbBottomLeftY and bbBottomLeftX:
             geom = Polygon.from_bbox((bbBottomLeftX, bbBottomLeftY, 
