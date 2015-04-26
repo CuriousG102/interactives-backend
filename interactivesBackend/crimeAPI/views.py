@@ -3,6 +3,7 @@ from django.shortcuts import render
 from models import Crime, Offense, Category
 from serializers import CrimeDetailSerializer, CrimeListSerializer, OffenseListSerializer, CategoryListSerializer
 
+from django.db.models import Count
 from django.shortcuts import render
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from rest_framework_jsonp.renderers import JSONPRenderer
@@ -82,10 +83,6 @@ class CrimeCount(APIView):
 
     def get(self, request, format=None):
         queryset = Crime.objects.all()
-        
-        MAX_ALLOWED_DAYS = datetime.timedelta(days=7)
-
-        queryset = Crime.objects.all()
         offenseTimeRange = [self.request.QUERY_PARAMS.get('offenseStartRange', None),
                             self.request.QUERY_PARAMS.get('offenseEndRange', None)]
         bbBottomLeftX = self.request.QUERY_PARAMS.get('bbBottomLeftX', None)
@@ -118,3 +115,28 @@ class CrimeCount(APIView):
 
         content = {'number':queryset.count()}
         return Response(content)
+
+class CensusDistrictCrimeCount(APIView):
+    renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
+
+    def get(self, request, format=None):
+        queryset = Crime.objects.all()
+        offenseTimeRange = [self.request.QUERY_PARAMS.get('offenseStartRange', None),
+                            self.request.QUERY_PARAMS.get('offenseEndRange', None)]
+        offense = self.request.QUERY_PARAMS.get('offense', None)
+        category = self.request.QUERY_PARAMS.get('category', None)
+
+        if offenseTimeRange[0]:
+            offenseTimeRange[0] = parse(offenseTimeRange[0])
+            queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
+        if offenseTimeRange[1]:
+            offenseTimeRange[1] = parse(offenseTimeRange[1])
+            queryset = queryset.filter(offense_time__lte=offenseTimeRange[1])
+        if offense:
+            queryset = queryset.filter(offenses__pk=offense)
+        if category:
+            queryset = queryset.filter(offenses__category__pk=category)
+
+        content = Crime.objects.values('offense_census_tract').annotate(count=Count('offense_census_tract'))
+        return Response(content)
+
