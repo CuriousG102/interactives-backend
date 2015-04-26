@@ -137,6 +137,6 @@ class CensusDistrictCrimeCount(APIView):
         if category:
             queryset = queryset.filter(offenses__category__pk=category)
 
-        content = Crime.objects.values('offense_census_tract').annotate(count=Count('offense_census_tract'))
+        content = queryset.values('offense_census_tract').annotate(count=Count('offense_census_tract'))
         return Response(content)
 
