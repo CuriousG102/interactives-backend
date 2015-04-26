@@ -8,4 +8,5 @@ urlpatterns = (
 	url(r'^count/$', views.CrimeCount.as_view()),
     url(r'^offense/$', views.OffenseList.as_view()),
     url(r'^category/$', views.CategoryList.as_view()),
+    url(r'^district/$', views.CensusDistrictCrimeCount.as_view()),
 )
