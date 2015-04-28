@@ -41,6 +41,7 @@ class CrimeList(generics.ListAPIView):
         bbTopRightX = self.request.QUERY_PARAMS.get('bbTopRightX', None)
         bbTopRightY = self.request.QUERY_PARAMS.get('bbTopRightY', None)
         offense = self.request.QUERY_PARAMS.get('offense', None)
+        census = self.request.QUERY_PARAMS.get('census', None)
         category = self.request.QUERY_PARAMS.get('category', None)
 
         if offenseTimeRange[0]:
@@ -71,6 +72,9 @@ class CrimeList(generics.ListAPIView):
         if category:
             queryset = queryset.filter(offenses__category__pk=category)
 
+        if census:
+            queryset = queryset.filter(offense_census_tract=census)
+
         return queryset
 
     serializer_class = CrimeListSerializer
@@ -90,6 +94,7 @@ class CrimeCount(APIView):
         bbTopRightX = self.request.QUERY_PARAMS.get('bbTopRightX', None)
         bbTopRightY = self.request.QUERY_PARAMS.get('bbTopRightY', None)
         offense = self.request.QUERY_PARAMS.get('offense', None)
+        census = self.request.QUERY_PARAMS.get('census', None)
         category = self.request.QUERY_PARAMS.get('category', None)
 
         if offenseTimeRange[0]:
@@ -111,7 +116,8 @@ class CrimeCount(APIView):
         if category:
             queryset = queryset.filter(offenses__category__pk=category)
 
-
+        if census:
+            queryset = queryset.filter(offense_census_tract=census)
 
         content = {'number':queryset.count()}
         return Response(content)
