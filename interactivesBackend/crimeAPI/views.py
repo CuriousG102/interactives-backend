@@ -56,7 +56,7 @@ class CrimeList(generics.ListAPIView):
 
         if offenseTimeRange[1]:
             offenseTimeRange[1] = parse(offenseTimeRange[1])
-            queryset = queryset.filter(offense_time__lte=offenseTimeRange[1])
+            queryset = queryset.filter(offense_time__lt=offenseTimeRange[1])
         # if offenseTimeRange[1] and ((offenseTimeRange[1] - offenseTimeRange[0]) <= MAX_ALLOWED_DAYS):
         #     queryset = queryset.filter(offense_time__lte=offenseTimeRange[1])
         # else:
@@ -157,7 +157,7 @@ class CrimeCount(APIView):
 
         if offenseTimeRange[1]:
             offenseTimeRange[1] = parse(offenseTimeRange[1])
-            queryset = queryset.filter(offense_time__lte=offenseTimeRange[1])
+            queryset = queryset.filter(offense_time__lt=offenseTimeRange[1])
 
         if bbTopRightY and bbTopRightX and bbBottomLeftY and bbBottomLeftX:
             geom = Polygon.from_bbox((bbBottomLeftX, bbBottomLeftY, 
@@ -191,7 +191,7 @@ class CensusDistrictCrimeCount(APIView):
             queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
         if offenseTimeRange[1]:
             offenseTimeRange[1] = parse(offenseTimeRange[1])
-            queryset = queryset.filter(offense_time__lte=offenseTimeRange[1])
+            queryset = queryset.filter(offense_time__lt=offenseTimeRange[1])
         if offense:
             queryset = queryset.filter(offenses__pk=offense)
         if category:
