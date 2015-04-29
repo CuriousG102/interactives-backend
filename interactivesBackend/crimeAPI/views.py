@@ -126,7 +126,7 @@ class CrimeCountIncrement(APIView):
             queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
             queryset = queryset.filter(offense_time__lt=offenseTimeRange[0] + increment)
             content.append({'number':queryset.count()})
-            offenseTimeRange += increment
+            offenseTimeRange[0] += increment
 
         
         return Response(content)
