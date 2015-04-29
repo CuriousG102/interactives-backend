@@ -124,8 +124,9 @@ class CrimeCountIncrement(APIView):
             if census:
                 queryset = queryset.filter(offense_census_tract=census)
             queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
-            queryset = queryset.filter(offense_time__lte=offenseTimeRange[0] + increment)
+            queryset = queryset.filter(offense_time__lt=offenseTimeRange[0] + increment)
             content.append({'number':queryset.count()})
+            offenseTimeRange += increment
 
         
         return Response(content)
