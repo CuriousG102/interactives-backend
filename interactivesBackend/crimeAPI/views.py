@@ -99,8 +99,8 @@ class CrimeCountIncrement(APIView):
         category = self.request.QUERY_PARAMS.get('category', None)
         increment = self.request.QUERY_PARAMS.get('increment', None)
 
-        if (not increment) or (not offenseTimeRange[0]) or (not offenseTimeRange[1]):
-            return Http404('<h1>You need an increment and times dummy</h1>')
+        # if (not increment) or (not offenseTimeRange[0]) or (not offenseTimeRange[1]):
+        #     return Http404('<h1>You need an increment and times dummy</h1>')
 
         offenseTimeRange[0] = parse(offenseTimeRange[0])
         offenseTimeRange[1] = parse(offenseTimeRange[1])
