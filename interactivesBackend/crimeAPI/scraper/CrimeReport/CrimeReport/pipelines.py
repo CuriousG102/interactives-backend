@@ -29,6 +29,7 @@ class CrimeReportPipeline(object):
             i.offense_time = datetime.strptime(item['offense_time'],
                                                   time_format)
             i.offense_time = timezone.localize(i.offense_time)
+            i.time_to_report_in_seconds = (i.report_time - i.offense_time).total_seconds()
 
 
             i.offense_address = item['offense_address']
