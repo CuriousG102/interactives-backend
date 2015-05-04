@@ -16,5 +16,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        subtract_times,
+        migrations.RunPython(subtract_times),
     ]
