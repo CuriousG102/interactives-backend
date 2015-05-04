@@ -5,6 +5,7 @@ class Crime(models.Model):
 	report_number = models.CharField(max_length=50, null=True, db_index=True)
 	report_time = models.DateTimeField(null=True, db_index=True)
 	offense_time = models.DateTimeField(null=True, db_index=True)
+	time_to_report_in_seconds = models.DateTimeField(null=True)
 	offenses = models.ManyToManyField('Offense', db_index=True)
 	offense_address = models.CharField(max_length=100, null=True, db_index=True)
 	offense_census_tract = models.CharField(max_length=20, null=True, db_index=True)
