@@ -247,7 +247,7 @@ class CensusDistrictCrimeCount(APIView):
 
 class CrimeCountByArea(APIView):
     renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
-     def get(self, request, format=None):
+    def get(self, request, format=None):
         queryset = Crime.objects.all()
         offenseTimeRange = [self.request.QUERY_PARAMS.get('offenseStartRange', None),
                             self.request.QUERY_PARAMS.get('offenseEndRange', None)]
@@ -272,4 +272,4 @@ class CrimeCountByArea(APIView):
             count = queryset.filter(offense_area_command=area['offense_area_command']).count()
             countDict[area['offense_area_command']] = count
 
-        return Response(countDict)        
+        return Response(countDict)
