@@ -11,4 +11,5 @@ urlpatterns = (
     url(r'^category/$', views.CategoryList.as_view()),
     url(r'^district/$', views.CensusDistrictCrimeCount.as_view()),
     url(r'^countArea/$', views.CrimeCountByArea.as_view()),
+    url(r'^timeToReport/$', views.OffenseVReportTime.as_view()),
 )
