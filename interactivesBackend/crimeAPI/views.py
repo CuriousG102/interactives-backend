@@ -200,50 +200,53 @@ class CensusDistrictCrimeCount(APIView):
         content = queryset.values('offense_census_tract').annotate(count=Count('offense_census_tract'))
         return Response(content)
 
-# class OffenseVReportTime(APIView):
-#     renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
+class OffenseVReportTime(APIView):
+    renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
 
-#     def get(self, request, format=None):
-#         queryset = Crime.objects.all()
-#         queryset = Crime.objects.all()
-#         offenseTimeRange = [self.request.QUERY_PARAMS.get('offenseStartRange', None),
-#                             self.request.QUERY_PARAMS.get('offenseEndRange', None)]
-#         bbBottomLeftX = self.request.QUERY_PARAMS.get('bbBottomLeftX', None)
-#         bbBottomLeftY = self.request.QUERY_PARAMS.get('bbBottomLeftY', None)
-#         bbTopRightX = self.request.QUERY_PARAMS.get('bbTopRightX', None)
-#         bbTopRightY = self.request.QUERY_PARAMS.get('bbTopRightY', None)
-#         offense = self.request.QUERY_PARAMS.get('offense', None)
-#         census = self.request.QUERY_PARAMS.get('census', None)
-#         category = self.request.QUERY_PARAMS.get('category', None)
+    def get(self, request, format=None):
+        queryset = Crime.objects.all()
+        queryset = Crime.objects.all()
+        offenseTimeRange = [self.request.QUERY_PARAMS.get('offenseStartRange', None),
+                            self.request.QUERY_PARAMS.get('offenseEndRange', None)]
+        bbBottomLeftX = self.request.QUERY_PARAMS.get('bbBottomLeftX', None)
+        bbBottomLeftY = self.request.QUERY_PARAMS.get('bbBottomLeftY', None)
+        bbTopRightX = self.request.QUERY_PARAMS.get('bbTopRightX', None)
+        bbTopRightY = self.request.QUERY_PARAMS.get('bbTopRightY', None)
+        offense = self.request.QUERY_PARAMS.get('offense', None)
+        census = self.request.QUERY_PARAMS.get('census', None)
+        category = self.request.QUERY_PARAMS.get('category', None)
 
-#         if offenseTimeRange[0]:
-#             offenseTimeRange[0] = parse(offenseTimeRange[0])
-#             queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
+        if offenseTimeRange[0]:
+            offenseTimeRange[0] = parse(offenseTimeRange[0])
+            queryset = queryset.filter(offense_time__gte=offenseTimeRange[0])
 
-#         if offenseTimeRange[1]:
-#             offenseTimeRange[1] = parse(offenseTimeRange[1])
-#             queryset = queryset.filter(offense_time__lt=offenseTimeRange[1])
+        if offenseTimeRange[1]:
+            offenseTimeRange[1] = parse(offenseTimeRange[1])
+            queryset = queryset.filter(offense_time__lt=offenseTimeRange[1])
 
-#         if bbTopRightY and bbTopRightX and bbBottomLeftY and bbBottomLeftX:
-#             geom = Polygon.from_bbox((bbBottomLeftX, bbBottomLeftY, 
-#                                     bbTopRightX, bbTopRightY))
-#             queryset = queryset.filter(geocode_location__within=geom)
+        if bbTopRightY and bbTopRightX and bbBottomLeftY and bbBottomLeftX:
+            geom = Polygon.from_bbox((bbBottomLeftX, bbBottomLeftY, 
+                                    bbTopRightX, bbTopRightY))
+            queryset = queryset.filter(geocode_location__within=geom)
 
-#         if offense:
-#             queryset = queryset.filter(offenses__pk=offense)
+        if offense:
+            queryset = queryset.filter(offenses__pk=offense)
 
-#         if category:
-#             queryset = queryset.filter(offenses__category__pk=category)
+        if category:
+            queryset = queryset.filter(offenses__category__pk=category)
 
-#         if census:
-#             queryset = queryset.filter(offense_census_tract=census)
+        if census:
+            queryset = queryset.filter(offense_census_tract=census)
 
-#         # there's definitely room for optimization in the following algorithm
-#         areas = queryset.values('offense_area_command').distinct()
-#         avgDict = {}
-#         for area in areas:
-#             filterString = area['offense_area_command']
-#             avgDict[filterString] = queryset.filter(offense_area_command=filterString).aggregate(Avg())
+        # there's definitely room for optimization in the following algorithm
+        areas = queryset.values('offense_area_command').distinct()
+        avgDict = {}
+        for area in areas:
+            filterString = area['offense_area_command']
+            avgDict[filterString] = queryset.filter(offense_area_command=filterString).aggregate(Avg('time_to_report_in_seconds'))
+            avgDict[filterString] = avgDict[filterString]['time_to_report_in_seconds__avg']
+
+        return Response(avgDict)
 
 class CrimeCountByArea(APIView):
     renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
@@ -265,8 +268,8 @@ class CrimeCountByArea(APIView):
         if category:
             queryset = queryset.filter(offenses__category__pk=category)
 
+        # there's definitely room for optimization in the following algorithm
         areas = queryset.values('offense_area_command').distinct()
-
         countDict = {}
         for area in areas:
             count = queryset.filter(offense_area_command=area['offense_area_command']).count()
