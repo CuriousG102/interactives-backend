@@ -19,7 +19,7 @@
     border-color: #253494;
 }
 
-#categories {
+.modal {
     overflow:scroll;
-    position: absolute; /* categories is big and need to be scrollable */
+    position: absolute;
 }
