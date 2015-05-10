@@ -4,7 +4,7 @@ var InteractiveController = {
     DAYS_IN_PAST_FOR_DEFAULT: 6,
     MAX_RANGE: 30,
     MIN_RANGE: 2,
-    DAYS_FROM_PRESENT: 6,
+    DAYS_FROM_PRESENT: 7,
     slider: null,
     clients: [],
 
