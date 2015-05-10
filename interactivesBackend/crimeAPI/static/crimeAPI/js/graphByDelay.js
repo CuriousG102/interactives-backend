@@ -74,7 +74,7 @@ var Graph2 = {
          .call(this.yAxis)
       .append("text")
          .attr("transform", "rotate(-90)")
-         .attr("x", -(wAndH.inner_height / 2))
+         .attr("x", -(wAndH.inner_height / 3))
          .attr("y", -100)
          .attr("dy", "4em")
          .style("text-anchor", "end")
