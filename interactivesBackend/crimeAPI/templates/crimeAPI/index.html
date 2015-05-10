@@ -35,7 +35,22 @@
     <script src="{% static 'crimeAPI/js/map.js' %}"></script>
     <script src="{% static 'crimeAPI/js/graphOverTime.js' %}"></script>
     <script src="{% static 'crimeAPI/js/graphByDelay.js' %}"></script>
-   <script src="{% static 'crimeAPI/js/graphByArea.js' %}"></script>
+    <script src="{% static 'crimeAPI/js/graphByArea.js' %}"></script>
+    <script>
+      // google analytics code
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function()
+      {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
+      Date();a=s.createElement(o),
+
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(
+      a,m)
+
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga')
+      ;
+        ga('create', 'UA-5909761-23', 'auto');
+        ga('send', 'pageview');
+    </script>
   </head>
   <body>
     <div class="modal fade" id="categories" tabindex="-1" role="dialog" aria-labelledby="Categories" aria-hidden="true">
