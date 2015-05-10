@@ -160,9 +160,9 @@ var Graph2 = {
          .attr("transform", "rotate(-90)")
          .attr("x", -(wAndH.inner_height / 2))
          .attr("y", -100)
-         .attr("dy", "4em")
+         .attr("dy", "3em")
          .style("text-anchor", "end")
-         .text("Count");
+         .text("Delay (in hours");
 
     this.xScaler = this.xScaler
               .rangeRoundBands([0, wAndH.inner_width], .1);

@@ -27,7 +27,7 @@ var InteractiveController = {
             ranges: {
                'Last Week': [moment().subtract('days', 13), moment().subtract('days', 7)],
                'Last 30 Days': [moment().subtract('days', 36), moment().subtract('days', 7)],
-               'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+               'Previous Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
             },
         }
         );
