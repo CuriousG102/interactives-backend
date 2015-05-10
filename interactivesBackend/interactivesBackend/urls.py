@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^photoMap/', include('photoMap.urls',
     						   namespace='photoMap')),
     url(r'^crime/', include('crimeAPI.urls',
-    						   namespace='crimeAPI'), name='crime'),
+    						   namespace='crimeAPI')),
     url(r'^api-auth/', include('rest_framework.urls',
    							   namespace='rest_framework')),
 )

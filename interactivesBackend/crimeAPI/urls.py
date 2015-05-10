@@ -13,4 +13,5 @@ urlpatterns = (
     url(r'^countArea/$', views.CrimeCountByArea.as_view()),
     url(r'^timeToReport/$', views.OffenseVReportTime.as_view()),
     url(r'^map/$', views.crimeMap),
+    url(r'^base/$', views.baseView, name='baseView')
 )
