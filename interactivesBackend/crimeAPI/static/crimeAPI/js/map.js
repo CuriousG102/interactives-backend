@@ -124,7 +124,7 @@ var CrimeMap = {
         d3.select("#zoomOut").on("click", this.reset.bind(this));
 
         var drawOverlay = function() {
-            d3.json(reqMaker._API_URL+"js/apd_areas.topojson", function(error, areas_map) {
+            d3.json(AREAS_JSON_URL, function(error, areas_map) {
                 if (error) return console.error(error);
 
                 var areas = areas_map.objects.apd_areas;
@@ -217,7 +217,7 @@ var CrimeMap = {
             }.bind(this));
         }.bind(this);
 
-        d3.json(reqMaker._API_URL+"js/apd_census_tracts_pared.topojson", function(drawOverlay, error, tracts_map) {
+        d3.json(CENSUS_TRACTS_JSON_URL, function(drawOverlay, error, tracts_map) {
             if (error) return console.error(error);
 
             var tracts = tracts_map.objects.apd_census_tracts_pared;
