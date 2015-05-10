@@ -104,6 +104,7 @@ var CrimeMap = {
 
         var tip = d3.tip()
             .attr("class", "map-tip")
+            .direction('e')
             .html(function(d) {
                 var descriptorName;
                         if (d.properties.AREA_NAME) 
