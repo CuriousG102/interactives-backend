@@ -214,10 +214,10 @@ var CrimeMap = {
                     }
                 }
                 missionControl.slider.data('daterangepicker')
-                    .setStartDate(moment().subtract(slider.DAYS_FROM_PRESENT + slider.DAYS_IN_PAST_FOR_DEFAULT, 'days'));
+                    .setStartDate(moment().subtract(missionControl.slider.DAYS_FROM_PRESENT + missionControl.slider.DAYS_IN_PAST_FOR_DEFAULT, 'days'));
 
                 missionControl.slider.data('daterangepicker')
-                    .setEndDate(moment().subtract(slider.DAYS_FROM_PRESENT, 'days'));
+                    .setEndDate(moment().subtract(missionControl.slider.DAYS_FROM_PRESENT, 'days'));
                 missionControl.addClient(this.display.bind(this));
             }.bind(this));
         }.bind(this);
