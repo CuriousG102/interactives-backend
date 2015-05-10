@@ -29,7 +29,7 @@ var InteractiveController = {
                'Last 30 Days': [moment().subtract('days', 36), moment().subtract('days', 7)],
                'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
             },
-        },
+        }
         );
 
         this.slider.on("apply.daterangepicker", function(ev, picker) {
