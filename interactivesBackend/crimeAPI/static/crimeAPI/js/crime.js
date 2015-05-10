@@ -1,5 +1,5 @@
 var RequestMaker = {
-    _API_URL: "http://104.131.36.238/crimeAPI/",
+    _API_URL: null,
     crime_list : function(startDate, endDate, offense, category, district, callback) {
         this._crime_query(false, null, false, false, false, startDate, endDate, offense, category, district, callback);
     },
