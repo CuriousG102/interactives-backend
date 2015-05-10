@@ -49,7 +49,6 @@ var InteractiveController = {
                                                   click: catClick
                                                 }
                                               }).text("All Crimes").data('catID', null));
-        console.log(catItem);
         catSelector.append(catItem);
         reqMaker.category_list(function (catClick, err, resp) {
             for (var i = 0; i < resp.length; i++) {

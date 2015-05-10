@@ -100,7 +100,6 @@ var CrimeMap = {
     draw: function() {
         var width = parseInt(d3.select('#map').style('width'));
         var height = this.MAP_RATIO * width;
-        console.log(height);
 
         var tip = d3.tip()
             .attr("class", "map-tip")
