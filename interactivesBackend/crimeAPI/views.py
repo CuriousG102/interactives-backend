@@ -276,3 +276,6 @@ class CrimeCountByArea(APIView):
             countDict[area['offense_area_command']] = count
 
         return Response(countDict)
+
+def crimeMap(request):
+    return render(request, 'crimeAPI/index.html')
