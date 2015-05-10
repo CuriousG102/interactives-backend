@@ -32,10 +32,6 @@ var InteractiveController = {
         }
         );
 
-        this.slider.on("apply.daterangepicker", function(ev, picker) {
-            this.update();
-        }.bind(this));
-
         var catClick = function(event) {
                          $(".catSelectorItem").removeClass("active");
                          $(this).parent().addClass("active");
@@ -77,6 +73,7 @@ var InteractiveController = {
                 this.startDate = this.slider.data('daterangepicker').startDate;
                 this.endDate = this.slider.data('daterangepicker').endDate;
                 $('#slider span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                this.update();
             }.bind(this));
     },
 
