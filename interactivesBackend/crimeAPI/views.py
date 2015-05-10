@@ -278,7 +278,13 @@ class CrimeCountByArea(APIView):
         return Response(countDict)
 
 def crimeMap(request):
-    return render(request, 'crimeAPI/index.html')
+    catOffenseNames = []
+    for category in Category.objects.all().order_by('name'):
+        catOffenseName = (category, 
+                          Offense.objects.all().filter(category=category).order_by('name'))
+        catOffenseNames.append(catOffenseName)
+    return render(request, 'crimeAPI/index.html', 
+                  {'catOffenseNames':catOffenseNames})
 
 def baseView(request):
     raise Http404("Poll does not exist")
