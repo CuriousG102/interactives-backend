@@ -69,6 +69,12 @@
                 {% endfor %}
               </ul>
             {% endfor %}
+            <h2>Uncategorized Crimes</h2>
+              <ul>
+                {% for offense in nullCatOffenseNames %}
+                  <li>{{offense.name}}</li>
+                {% endfor %}
+              </ul>
           </div>
         </div>
       </div>

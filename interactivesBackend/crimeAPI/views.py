@@ -283,8 +283,10 @@ def crimeMap(request):
         catOffenseName = (category, 
                           Offense.objects.all().filter(category=category).order_by('name'))
         catOffenseNames.append(catOffenseName)
+    nullCatOffenseNames = Offense.objects.all().filter(category__isnull=True).order_by('name')
     return render(request, 'crimeAPI/index.html', 
-                  {'catOffenseNames':catOffenseNames})
+                  {'nullCatOffenseNames':nullCatOffenseNames,
+                  'catOffenseNames':catOffenseNames})
 
 def baseView(request):
     raise Http404("Poll does not exist")
