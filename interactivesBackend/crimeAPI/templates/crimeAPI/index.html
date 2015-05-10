@@ -38,6 +38,26 @@
    <script src="{% static 'crimeAPI/js/graphByArea.js' %}"></script>
   </head>
   <body>
+    <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="Frequently Asked Questions" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">FAQ</h4>
+          </div>
+          <div class="modal-body">
+            <h2>What crime is under each category?</h2>
+            <p>We attempted to categorize crime in a way that people would have an intuitive feel for what each category means. If you want to see what offense code is placed under each category, then click here</p>
+            <h2>Where do you pull your crime information from?</h2>
+            <p>Our crime information is taken from APD's Incident Reports Search page. We visit all available published days (usually about 500) every night. If you think that citizens in Austin should have an easier way to get all of APD's full electronic crime data, you should contact <a href="https://twitter.com/kerry_atx" target="_blank">Kerry O'Connor</a>, the city's Chief Innovation Officer</p>
+            <h2>I'm a programmer. How do I use the data y'all have?</h2>
+            <p>The Daily Texan will release an API for developers very soon. If you want early access contact mileshutson@utexas.edu</p>
+            <h2>Can I see the code?</h2>
+            <p>All code for this interactive can be found <a href="https://github.com/CuriousG102/interactives-backend" target="_blank">on GitHub</a>. Questions can be directed to mileshutson@utexas.edu</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container-fluid">
       <div class="row top-buffer"></div>
       <div class="row">
@@ -71,21 +91,15 @@
         <div class="col-md-3">
           <h1>Crime in Austin</h1>
           <p>Curious about crime in the City of Austin? The Daily Texan has your back. Each night, our programs collate the latest crime reports from APD so you can view them here.</p>
-          <h2>What crime is under each category?</h2>
-          <p>We attempted to categorize crime in a way that people would have an intuitive feel for what each category means. If you want to see what offense code is placed under each category, then click here</p>
-          <h2>Where do you pull your crime information from?</h2>
-          <p>Our crime information is taken from APD's Incident Reports Search page. We visit all available published days (usually about 500) every night. If you think that citizens in Austin should have an easier way to get all of APD's full electronic crime data, you should contact <a href="https://twitter.com/kerry_atx" target="_blank">Kerry O'Connor</a>, the city's Chief Innovation Officer</p>
-          <h2>I'm a programmer. How do I use the data y'all have?</h2>
-          <p>The Daily Texan will release an API for developers very soon. If you want early access contact mileshutson@utexas.edu</p>
-          <h2>Can I see the code?</h2>
-          <p>All code for this interactive can be found <a href="https://github.com/CuriousG102/interactives-backend" target="_blank">on GitHub</a>. Questions can be directed to mileshutson@utexas.edu</p>
           <h2>Credit</h2>
           <p>This interactive would not be possible without:</p>
           <ul>
             <li>Miles Hutson - Map, API, data, selectors</li>
             <li>Elizabeth Benefiel - Charts, UX input</li>
             <li>Jack Mitts and Amanda Voeller - Grouping census tracts to areas</li>
+            <li>The generosity of the opensource community</li>
           </ul>
+          <h2><a href="#" data-toggle="modal" data-target="#faq">FAQ</a></h2>
         </div>
         </div>
         <div class="row">
