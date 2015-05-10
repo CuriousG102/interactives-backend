@@ -213,11 +213,6 @@ var CrimeMap = {
                         this.area_tracts.push(tracts);
                     }
                 }
-                missionControl.slider.data('daterangepicker')
-                    .setStartDate(moment().subtract(missionControl.DAYS_FROM_PRESENT + missionControl.DAYS_IN_PAST_FOR_DEFAULT, 'days'));
-
-                missionControl.slider.data('daterangepicker')
-                    .setEndDate(moment().subtract(missionControl.DAYS_FROM_PRESENT, 'days'));
                 missionControl.addClient(this.display.bind(this));
             }.bind(this));
         }.bind(this);
