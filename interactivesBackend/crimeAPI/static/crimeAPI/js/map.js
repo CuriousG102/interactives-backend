@@ -8,8 +8,8 @@ var CrimeMap = {
     TRACT_CHORO_COLORS: ['rgb(199,233,180)','rgb(127,205,187)',
                          'rgb(65,182,196)','rgb(44,127,184)',
                          'rgb(37,52,148)'],
-    NO_AREA_VALUES_TEXT: 'Unfortuntately, there is not enough data to color the map for this date range',
-    NO_TRACT_VALUES_TEXT: 'Unfortunately, there is not enough data to color the map at this detail level for this date range',
+    NO_AREA_VALUES_TEXT: 'There is not enough data to color the map for this date range',
+    NO_TRACT_VALUES_TEXT: 'There is not enough data to color the map at this detail level for this date range',
     svg: null,
     area_tracts: [],
     areas_active: false,
@@ -293,7 +293,8 @@ var CrimeMap = {
             var area_tract = this.area_tracts[i];
             var numCrimesInArea = 0;
             for (var j = 0; j < area_tract.length; j++) {
-                numCrimesInArea += data[area_tract[j]];
+                if (data.hasOwnProperty(area_tract[j]))
+                    numCrimesInArea += data[area_tract[j]];
             }
             if (numCrimesInArea > maxNumCrimesAreas) 
                 maxNumCrimesAreas = numCrimesInArea;
