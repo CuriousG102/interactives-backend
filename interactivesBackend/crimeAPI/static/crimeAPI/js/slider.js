@@ -7,6 +7,8 @@ var InteractiveController = {
     DAYS_FROM_PRESENT: 7,
     slider: null,
     clients: [],
+    startDate: null,
+    endDate: null,
 
     setup: function() {
         var MILLISECONDS_IN_THE_PAST = this.DAYS_IN_THE_PAST * this.MILLISECONDS_IN_A_DAY;
@@ -28,10 +30,6 @@ var InteractiveController = {
                'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
             },
         },
-        function(start, end, label) {
-            console.log(start.toISOString(), end.toISOString(), label);
-            $('#slider span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        }
         );
 
         this.slider.on("apply.daterangepicker", function(ev, picker) {
@@ -68,18 +66,37 @@ var InteractiveController = {
                 this.append(catItem);
             }
         }.bind(catSelector, catClick));
+
+        // daterangepicker has a bad bug that only sometimes presents and that cuases it to lose its date setting
+        // this should be an ugly but functional workaround. I am also migrating functionality into here
+        // to consolidate code
+        this.startDate = moment().subtract(this.DAYS_FROM_PRESENT + this.DAYS_IN_PAST_FOR_DEFAULT, 'days');
+        this.endDate = moment().subtract(this.DAYS_FROM_PRESENT, 'days');
+        this.slider
+            .on('apply.daterangepicker', function() {
+                this.startDate = this.slider.data('daterangepicker').startDate;
+                this.endDate = this.slider.data('daterangepicker').endDate;
+                $('#slider span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+            }.bind(this));
     },
 
     addClient: function(clientFunction) {
         this.clients.push(clientFunction);
+        // daterangepicker has a bad bug that only sometimes presents and that cuases it to lose its date setting
+        // this should be an ugly but functional workaround.
+        this.slider.data('daterangepicker').setStartDate(this.startDate)
+        this.slider.data('daterangepicker').setEndDate(this.endDate)
+
         clientFunction(this.slider.data('daterangepicker').startDate.toDate(), 
                        this.slider.data('daterangepicker').endDate.toDate(), 
                        $('.catSelectorItem.active a').data('catID'));
     },
 
     update: function() {
-        console.log(this.slider.data('daterangepicker').startDate.toDate());
-        console.log(this.slider.data('daterangepicker').endDate.toDate());
+        // daterangepicker has a bad bug that only sometimes presents and that cuases it to lose its date setting
+        // this should be an ugly but functional workaround.
+        this.slider.data('daterangepicker').setStartDate(this.startDate)
+        this.slider.data('daterangepicker').setEndDate(this.endDate)
         
         for (var i = 0; i < this.clients.length; i++)
             this.clients[i](this.slider.data('daterangepicker').startDate.toDate(), 
