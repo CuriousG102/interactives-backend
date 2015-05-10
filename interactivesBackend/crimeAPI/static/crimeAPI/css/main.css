@@ -18,3 +18,8 @@
     background-color: #3B489F;
     border-color: #253494;
 }
+
+#categories {
+    overflow:scroll;
+    position: absolute; /* categories is big and need to be scrollable */
+}
