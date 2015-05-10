@@ -1,0 +1,63 @@
+#graph1, #graph2, #graph3 {
+	position: relative;
+}
+
+#noDataMsg{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+#graph1 rect {
+	fill: #253494;
+}
+
+#graph1 rect:hover {
+  fill: #6671B4;
+}
+
+#graph2 rect {
+	fill: #2c7fb8;
+}
+
+#graph2 rect:hover {
+  fill: #6BA5CD;
+}
+
+#graph3 rect {
+	fill: #41b6c4;
+}
+
+#graph3 rect:hover {
+  fill: #7ACCD6;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.domain {
+	fill: none;
+	stroke: black;
+	stroke-width: 1;
+}
+
+.graph-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+  pointer-events: none;
+}
+.graphTitle {
+  text-align: center;
+}

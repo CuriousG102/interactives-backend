@@ -1,0 +1,102 @@
+{% load staticfiles %}
+
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Daily Texan Interactive">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Daily Texan on Crime</title>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="{% static 'crimeAPI/js/crime.js' %}"></script>
+    <script type="text/javascript"> 
+      reqMaker._API_URL = "{% url 'crimeAPI' %}"
+    </script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" />
+
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script type="text/javascript" src="http://cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/bootstrap.daterangepicker/1/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'crimeAPI/css/slider.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'crimeAPI/css/main.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'crimeAPI/css/graph.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'crimeAPI/css/map.css' %}" />
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.3/d3-tip.min.js"></script>
+    <script src="{% static 'crimeAPI/js/slider.js %}"></script>
+    <script src="{% static 'crimeAPI/js/map.js %}"></script>
+    <script src="{% static 'crimeAPI/js/graphOverTime.js %}"></script>
+    <script src="{% static 'crimeAPI/js/graphByDelay.js %}"></script>
+   <script src="{% static 'crimeAPI/js/graphByArea.js %}"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row top-buffer"></div>
+      <div class="row">
+        <div id="map" class="col-md-6">
+          <img id="zoomOut" src="images/up-arrow-circle-hi.png"/>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+          <div id="sliderContainer" class="row">
+            <div class="col-md-12">
+              <div id="slider" class="pull-left" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                <span></span> <b class="caret"></b>
+              </div>
+            </div>
+          </div>
+          <div class="row top-buffer"></div>
+          <div class="btn-group row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="categorySelectorButton">
+              </button>
+              <ul class="dropdown-menu" role="menu" id="categorySelector"></ul>
+            </div>
+          </div>
+          <div class="row">
+            <div id="mapLegendContainer" class="col-md-5">
+              <div id="mapLegend"></div>
+            </div>
+          </div>
+          <!-- <div class="list-group" id="categorySelector"></div> -->
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <h3 class="graphTitle">Count over Time</h3>
+            <div class="row">
+              <div class="col-md-12" id="graph1Container">
+                <svg id="graph1" ></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <h3 class="graphTitle">Area by Delay</h3>
+            <div class="row">
+              <div class="col-md-12" id="graph2Container">
+                <svg id="graph2" ></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <h3 d class="graphTitle">Count by Area</h3>
+            <div class="row">
+              <div class="col-md-12" id="graph3Container">
+                <svg id="graph3" ></svg>
+              </div>
+            </div>
+          </div>
+      
+      </div>
+    </div>
+  <body>
+</html>

@@ -1,0 +1,50 @@
+.clickableArea:hover {
+    fill:rgb(255, 255, 240) !important; /* cringing at using important but worried about
+                              D3's performance on mouseout and mouseover.
+                              I think it's the lesser of two evils */
+    cursor: pointer;
+}
+#mapLegend {
+    height: 400px;
+    /*border-radius: 25px;
+    border: 2px solid #000;*/
+}
+#mapDescriptor {
+    height: 150px;
+    /*border-radius: 25px;
+    border: 2px solid #000;*/
+}
+#mapDescriptorRow {
+    margin-top: 30px;
+}
+.legendEntryColor {
+    height: 30px;
+    width: 30px;
+    margin-top: 10px;
+}
+.legendEntryText {
+}
+#mapPalette {
+    z-index: 0;
+}
+#zoomOut {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 30px;
+    z-index: 2;
+    visibility: hidden;
+}
+#map {
+    position: relative;
+}
+.map-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+  pointer-events: none;
+}
