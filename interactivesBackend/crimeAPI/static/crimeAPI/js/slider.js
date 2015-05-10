@@ -72,7 +72,7 @@ var InteractiveController = {
             .on('apply.daterangepicker', function() {
                 this.startDate = this.slider.data('daterangepicker').startDate;
                 this.endDate = this.slider.data('daterangepicker').endDate;
-                $('#slider span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                $('#slider span').html(this.startDate.format('MMMM D, YYYY') + ' - ' + this.endDate.format('MMMM D, YYYY'))
                 this.update();
             }.bind(this));
     },
