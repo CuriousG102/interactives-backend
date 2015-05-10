@@ -280,5 +280,5 @@ class CrimeCountByArea(APIView):
 def crimeMap(request):
     return render(request, 'crimeAPI/index.html')
 
-def baseBiew(request):
+def baseView(request):
     raise Http404("Poll does not exist")
