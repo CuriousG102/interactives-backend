@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from crimeAPI import views
 
@@ -13,5 +13,6 @@ urlpatterns = (
     url(r'^countArea/$', views.CrimeCountByArea.as_view()),
     url(r'^timeToReport/$', views.OffenseVReportTime.as_view()),
     url(r'^map/$', views.crimeMap),
-    url(r'^$', views.baseView, name='baseView')
+    url(r'^$', views.baseView, name='baseView'),
+    url(r'^docs/', include('rest_framework_swagger.urls')),
 )
