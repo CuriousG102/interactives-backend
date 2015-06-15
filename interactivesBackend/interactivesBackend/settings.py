@@ -91,6 +91,7 @@ SWAGGER_SETTINGS = {
     'enabled_methods': [
         'get',
     ],
+    'exclude_namespaces': ['photoMap'],
 }
 
 if DEV_SERVER_ENVIRONMENT:
