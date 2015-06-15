@@ -19,18 +19,40 @@ from pytz import timezone
 
 # Create your views here.
 class CategoryList(generics.ListAPIView):
+    """
+    Crime offense codes have been placed into categories. Those categories are listed at this API
+    endpoint
+    """
     queryset = Category.objects.all()
     serializer_class = CategoryListSerializer
 
 class OffenseList(generics.ListAPIView):
+    """
+    This endpoint lists all offenses available via this API
+    """
     queryset = Offense.objects.all()
     serializer_class = OffenseListSerializer
 
 class CrimeDetail(generics.RetrieveAPIView):
+    """
+    This will list the minute details of a specific crime requested by PK
+    """
     queryset = Crime.objects.all().prefetch_related('offenses')
     serializer_class = CrimeDetailSerializer
 
 class CrimeList(generics.ListAPIView):
+    """
+    Endpoint that lists crimes. The responses generated via this endpoint can be filtered by adding various parameters
+    offenseStartRange -- ISO 8601, enter a date/time and only get crimes that occurred after it
+    offenseEndRange -- ISO 8601, enter a date/time and only get crimes that occured before it
+    bbBottomLeftX -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbBottomLeftY -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbTopRightX -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbTopRightY -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    offense -- Number, pk of offense you wish to filter crimes by
+    census -- Decimal number, district you want crimes in
+    category -- Number, pk of category you wish to filter crimes by 
+    """
     def get_queryset(self):
         MAX_ALLOWED_DAYS = datetime.timedelta(days=7)
 
@@ -82,8 +104,24 @@ class CrimeList(generics.ListAPIView):
 
 class CrimeCountIncrement(APIView):
     """
-    A view that returns the count of crimes fulfilling the criteria given in the query
-    in increments specified by the query
+    Endpoint that returns the count of crimes fulfilling the criteria given in the query
+    in hour increments specified by the query
+
+    Content looks like this: [{'number':queryset.count()}, ...]
+    Please filter by offenseStartRange and offenseEndRange or I will have to throttle this endpoint
+
+    increment -- Number of hours for each increment
+
+    The responses generated via this endpoint can be filtered by adding various parameters
+    offenseStartRange -- ISO 8601, enter a date/time and only get crimes that occurred after it
+    offenseEndRange -- ISO 8601, enter a date/time and only get crimes that occured before it
+    bbBottomLeftX -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbBottomLeftY -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbTopRightX -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbTopRightY -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    offense -- Number, pk of offense you wish to filter crimes by
+    census -- Decimal number, district you want crimes in
+    category -- Number, pk of category you wish to filter crimes by
     """
     renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
 
@@ -136,6 +174,17 @@ class CrimeCountIncrement(APIView):
 class CrimeCount(APIView):
     """
     A view that returns the count of crimes fulfilling the criteria given in the query.
+
+    The responses generated via this endpoint can be filtered by adding various parameters
+    offenseStartRange -- ISO 8601, enter a date/time and only get crimes that occurred after it
+    offenseEndRange -- ISO 8601, enter a date/time and only get crimes that occured before it
+    bbBottomLeftX -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbBottomLeftY -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbTopRightX -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbTopRightY -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    offense -- Number, pk of offense you wish to filter crimes by
+    census -- Decimal number, district you want crimes in
+    category -- Number, pk of category you wish to filter crimes by
     """
     renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
 
@@ -177,6 +226,16 @@ class CrimeCount(APIView):
         return Response(content)
 
 class CensusDistrictCrimeCount(APIView):
+    """
+    Count of number of crimes for each district
+
+    The responses generated via this endpoint can be filtered by adding various parameters
+    offenseStartRange -- ISO 8601, enter a date/time and only get crimes that occurred after it
+    offenseEndRange -- ISO 8601, enter a date/time and only get crimes that occured before it
+    offense -- Number, pk of offense you wish to filter crimes by
+    category -- Number, pk of category you wish to filter crimes by
+    """
+
     renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
 
     def get(self, request, format=None):
@@ -201,6 +260,22 @@ class CensusDistrictCrimeCount(APIView):
         return Response(content)
 
 class OffenseVReportTime(APIView):
+    """
+    Average of the difference between when an offense was thought to have occurred and when that offense
+    was reported. Lists by APD area command.
+
+    The responses generated via this endpoint can be filtered by adding various parameters
+    offenseStartRange -- ISO 8601, enter a date/time and only get crimes that occurred after it
+    offenseEndRange -- ISO 8601, enter a date/time and only get crimes that occured before it
+    bbBottomLeftX -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbBottomLeftY -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbTopRightX -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    bbTopRightY -- One of four coordinate parameters for filtering crimes by their presence in a bounding box
+    offense -- Number, pk of offense you wish to filter crimes by
+    census -- Decimal number, district you want crimes in
+    category -- Number, pk of category you wish to filter crimes by
+    """
+
     renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
 
     def get(self, request, format=None):
@@ -249,6 +324,16 @@ class OffenseVReportTime(APIView):
         return Response(avgDict)
 
 class CrimeCountByArea(APIView):
+    """
+    Count of number of crimes for each Area Command of APD. 
+
+    The responses generated via this endpoint can be filtered by adding various parameters
+    offenseStartRange -- ISO 8601, enter a date/time and only get crimes that occurred after it
+    offenseEndRange -- ISO 8601, enter a date/time and only get crimes that occured before it
+    offense -- Number, pk of offense you wish to filter crimes by
+    category -- Number, pk of category you wish to filter crimes by
+    """
+
     renderer_classes = (JSONRenderer, BrowsableAPIRenderer, JSONPRenderer)
     def get(self, request, format=None):
         queryset = Crime.objects.all()

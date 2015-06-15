@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'crimeAPI',
     'django.contrib.gis',
+    'rest_framework_swagger',
 )
 
 ROOT_URLCONF = 'interactivesBackend.urls'
@@ -84,6 +85,12 @@ REST_FRAMEWORK = {
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 500,
+}
+
+SWAGGER_SETTINGS = {
+    'enabled_methods': [
+        'get',
+    ],
 }
 
 if DEV_SERVER_ENVIRONMENT:

@@ -13,5 +13,6 @@ urlpatterns = (
     url(r'^countArea/$', views.CrimeCountByArea.as_view()),
     url(r'^timeToReport/$', views.OffenseVReportTime.as_view()),
     url(r'^map/$', views.crimeMap),
-    url(r'^$', views.baseView, name='baseView')
+    url(r'^$', views.baseView, name='baseView'),
+    url(r'^docs/', include('rest_framework_swagger.urls')),
 )
